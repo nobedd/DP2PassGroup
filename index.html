@@ -1,35 +1,27 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Index Page</title>
-    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-firestore.js"></script>
-</head>
-<body>
-    <div class="topnav">
-        <a class="active" href="#home">Home</a>
-        <a href="sampleAddProduct.html">AddProduct</a>
-        <a href="sampleAddSales.html">AddSales</a>
-        <a href="sampleDisplayRecord.html">DisplayRecord</a>
-    </div>
-    
-    <h1>SALES REPORTING AND PREDICITON SYSTEM</h1>
-    <p>LOGIN FOR GAY</p>
-    <button id="loginButton">Login here</button>
-    <button id="signoutButton">Sign out</button>
-    <h1 id="addProduct">Add product</h1>
-    <p>Product Name</p>
-    <input type="text" id="productName"/>
-    <p>Product Raw Price</p>
-    <input type="number" id="productRawPrice"/>
-    <p>Product Price</p>
-    <input type="number" id="productPrice"/>
-    <br/>
-    <button id="saveButton">Save</button>
-    <button id="Reset">Reset</button>
+    <head>
+        <meta charset="utf-8">
+        <title>HomePage</title>
+        <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-firestore.js"></script>
+    </head>
+    <body>
+        <div class="topnav">
+            <a class="active" href="#home">Home</a>
+            <a href="sampleAddProduct.html">AddProduct</a>
+            <a href="sampleAddSales.html">AddSales</a>
+            <a href="sampleDisplayRecord.html">DisplayRecord</a>
+        </div>
+        
+        <h1>SALES REPORTING AND PREDICITON SYSTEM</h1>
+        <p>LOGIN FOR GAY</p>
+        <button id="loginButton">Login here</button>
+        <button id="signoutButton">Sign out</button>
 
-    
-    <script src="js/app.js"></script>
-    <!--<script src="js/angular.min.js"></script>
-    <script src="js/addproduct.js"></script>-->
+        <script src="js/app.js"></script>
+        <!--<script src="js/angular.min.js"></script>
+        <script src="js/addproduct.js"></script>-->
+    </body>
 </html> 

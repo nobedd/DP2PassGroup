@@ -9,9 +9,25 @@
     messagingSenderId: "1032158016281"
     };
     firebase.initializeApp(config);
-    var firestore = firebase.firestore();
 
-    const docRef = firestore.doc("samples/productData");
+    loginButton.addEventListener("click", function(){
+        firebase.auth().signInAnonymously();
+    });
+
+    signoutButton.addEventListener("click", function(){
+        firebase.auth().signOut();
+    })
+
+    firebase.auth().onAuthStateChanged(function(user){
+        console.log(user);
+        if(user){
+            document.getElementById("signoutButton").style.visibility = "show"
+        } else{
+            document.getElementById("signoutButton").style.visibility = "hidden"
+        }
+    })
+
+    var db = firebase.firestore();
     const outputHeader = document.querySelector("#addProduct");
     const inputProductName = document.querySelector("#productName");
     const inputProductPrice = document.querySelector("#productPrice");
@@ -21,15 +37,17 @@
         const SaveProductName = inputProductName.value;
         const SaveProductPrice = inputProductPrice.value;
         const SaveProductRawPrice = inputProductRawPrice.value;
-        docRef.set({
+        db.collection("Products").add({
             ProductName: SaveProductName,
             ProductPrice: SaveProductPrice,
-            ProductRawPrice: SaveProductRawPrice,
-        }).then(function(){
-            console.log("Status saved!");
-        }).catch(function(error){
+            ProductRawPrice: SaveProductRawPrice
+        })
+        .then(function(docRef){
+            console.log("Product saved!", docRef.id);
+        })
+        .catch(function(error){
             console.log("Got an error: ", error);
             }); 
-    })
+    });
 
 //})

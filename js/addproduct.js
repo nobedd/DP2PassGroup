@@ -1,4 +1,6 @@
-var db = firebase.firestore();
+//(function(){
+    var db = firebase.firestore();
+
     const inputProductName = document.querySelector("#productName");
     const inputProductPrice = document.querySelector("#productPrice");
     const inputProductRawPrice = document.querySelector("#productRawPrice");
@@ -13,7 +15,8 @@ var db = firebase.firestore();
             PName: SaveProductName,
             Sales_Price: SaveProductPrice,
             Raw_Price: SaveProductRawPrice,
-            Category: SaveProductCategory
+            Category: SaveProductCategory,
+            archive: false
         })
         .then(function(docRef){
             console.log("Product saved!", docRef.id);
@@ -23,6 +26,22 @@ var db = firebase.firestore();
         }); 
     });
 
+    db.collection("Products")
+        .get()
+        .then(function(querySnapshot){     
+            var content = "";
+            querySnapshot.forEach (function(doc){
+                content += '<tr>';
+                content += '<td>' + doc.data().PName + '</td>';
+                content += '<td>' + doc.data().Category + '</td>';
+                content += '<td>' + doc.data().Raw_Price + '</td>';
+                content += '<td>' + doc.data().Sales_Price + '</td>';
+                content += '<td>' + '<Button>Edit</Button>' + '</td>';
+                content += '</tr>';
+        })
+        $('#table').append(content);
+    })
+    
 
     const inputCategoryName = document.querySelector("#categoryName") 
     saveCategoryButton.addEventListener("click", function(){
@@ -37,3 +56,6 @@ var db = firebase.firestore();
             console.log("Got and eror: ", error);
         });
     });
+
+
+//});

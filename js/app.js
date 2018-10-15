@@ -7,7 +7,11 @@
         storageBucket: "dp2passgroup.appspot.com",
         messagingSenderId: "1032158016281"
     };
-        firebase.initializeApp(config);
+    firebase.initializeApp(config);
+
+    const firestore = firebase.firestore();
+    const settings = {/* your settings... */ timestampsInSnapshots: true};
+    firestore.settings(settings);
 
     loginButton.addEventListener("click", function(){
         firebase.auth().signInAnonymously();

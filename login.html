@@ -3,9 +3,16 @@
     <head>
         <meta charset="utf-8">
         <title>Login Page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-firestore.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
 <body>
     <div class="topnav">
@@ -14,18 +21,15 @@
             <a href="sampleAddSales.html">AddSales</a>
             <a href="sampleDisplayRecord.html">DisplayRecord</a>
     </div>
-    <h1>SRePS</h1>
-    <div class="container">
-        <label for="uname"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="uname" required>
-    <br>
-        <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
-    
-        <button type="submit">Login</button>
-        <label>
-          <input type="checkbox" checked="checked" name="remember"> Remember me
-        </label>
-      </div>
+    <div class="jumbotron"><h1 class="text-center">SRePS</h1></div>
+        <div class="form-group">
+            <label for="email">Email address:</label>
+            <input type="email" class="form-control" id="email">
+        </div>
+        <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" class="form-control" id="pwd">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
 </body>
 </html>

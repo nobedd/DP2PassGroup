@@ -25,13 +25,12 @@
             console.log("Got an error: ", error);
         }); 
     });
-
+    var productIDs = [];
     db.collection("Products")
         .get()
         .then(function(querySnapshot){     
             var content = "";
             querySnapshot.forEach (function(doc){
-                content += '<tr>';
                 content += '<td>' + doc.data().PName + '</td>';
                 content += '<td>' + doc.data().Category + '</td>';
                 content += '<td>' + doc.data().Raw_Price + '</td>';
@@ -42,7 +41,6 @@
         $('#table').append(content);
     })
     
-
     const inputCategoryName = document.querySelector("#categoryName") 
     saveCategoryButton.addEventListener("click", function(){
         const SaveCategoryName = inputCategoryName.value;

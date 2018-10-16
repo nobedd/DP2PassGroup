@@ -31,6 +31,7 @@
         .then(function(querySnapshot){     
             var content = "";
             querySnapshot.forEach (function(doc){
+                content += '<tr>';
                 content += '<td>' + doc.data().PName + '</td>';
                 content += '<td>' + doc.data().Category + '</td>';
                 content += '<td>' + doc.data().Raw_Price + '</td>';

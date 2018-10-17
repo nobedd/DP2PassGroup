@@ -37,6 +37,7 @@ $(document).ready(function(){
     //Click function for add button
     var i = 0;
     $('#add').click(function(){
+        i++;
         var content = ""; 
         content += '<tr id="' + i + '">'
         content += '<td class="onChangeUpdatePrice"><select id="dropdownDetails' + i + '" class="custom-select" required><option value="">Select a product to add</option></select></td>'

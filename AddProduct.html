@@ -12,14 +12,30 @@
    
 </head>
 <body>
-    <div class="container">
-        <div class="topnav">
-            <a class="active" href="index.html">Home</a>
-            <a href="AddProduct.html">Add Product</a>
-            <a href="AddSales.html">AddSales</a>
-            <a href="DisplayRecord.html">DisplayRecord</a>
+	<div class="container-fluid">
+		<div class="row bg-info">
+			<div class="col-12">
+				<nav class="navbar navbar-right navbar-light">
+					<a class="navbar-brand font-weight-bold" href="#">SRePS</a>
+					<button class="btn btn-outline-light" type="submit">Log out</button>
+				</nav>
+			</div>
         </div>
-    
+        
+		<div class="row">
+			<nav class="col-md-auto pr-0 bg-info">
+				<ul class="nav flex-column nav-tabs bg-info">
+					<li class="nav-item"><a class="nav-link text-white" href="AddSales.html">Add New Sales</a></li>
+					<li class="nav-item"><a class="nav-link text-white" href="DisplayRecord.html">Manage Sales Record</a></li>
+					<li class="nav-item"><a class="nav-link active text-black" href="#home">Manage Iventory</a></li>
+					<li class="nav-item"><a class="nav-link text-white" href="Generate_Report.html">Generate Report & Analystic</a></li>
+				</ul>
+            </nav>
+            
+			<div class="col-8 bg-white pt-3 text-black">
+				<div class="tab-content">
+					<div class="tab-pane container active" id="home">
+
         <h1>SALES REPORTING AND PREDICITON SYSTEM</h1>
         <p>LOGIN FOR GAY</p>
         <button id="loginButton">Login here</button>
@@ -74,6 +90,10 @@
         </div>
 
     </div>
+</div>
+</div>
+</div>
+</div>
     
     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

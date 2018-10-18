@@ -28,13 +28,13 @@
         }
     });
 
-    // loginButton.addEventListener("click", function(){
-    //     firebase.auth().signInAnonymously();
-    // });
+     loginButton.addEventListener("click", function(){
+         firebase.auth().signInAnonymously();
+     });
 
-    // signoutButton.addEventListener("click", function(){
-    //     firebase.auth().signOut();
-    // })
+     signoutButton.addEventListener("click", function(){
+         firebase.auth().signOut();
+     })
 
     firebase.auth().onAuthStateChanged(function(user){
         console.log(user);

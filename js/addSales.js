@@ -1,15 +1,17 @@
 $(document).ready(function(){
     var db = firebase.firestore();
     var mapPrice = {};
+    var mapCategory = {};
     var totalPrice;
     var formTableRowCount = 0;
-    
+
     //Populate Map for ProductName : SellingPrice
     db.collection("Products")
     .get()
     .then(function(querySnapshot){
         querySnapshot.forEach(function(doc){
             mapPrice[doc.data().PName] = doc.data().Sales_Price;
+            mapCategory[doc.data().PName] = doc.data().Category;
         })
     })
 
@@ -79,28 +81,34 @@ $(document).ready(function(){
 
     //onSubmit function
     $("#addSalesForm").submit(function(event){
+        var CurrentDropdownSelect = "";
         var SaveSalesDetailsID = [];
         var SaveDetails = [];
-        
+        var SaveDate = new Date();
+
         var rowID = 0;
         for(rowID = 0; rowID < formTableRowCount+1; rowID++){ 
-            if($("#dropdownDetails" + rowID +" option:selected").text() != ""){
+            CurrentDropdownSelect = $("#dropdownDetails" + rowID +" option:selected").text();
+            if(CurrentDropdownSelect != ""){
                 SaveDetails.push({
-                    name: $("#dropdownDetails" + rowID +" option:selected").text(), 
+                    name: CurrentDropdownSelect, 
+                    category: mapCategory[CurrentDropdownSelect],
                     quantity: parseInt($("#inputDetailsQuantity" + rowID).val()), 
                     unitPrice: parseFloat($("#unitPrice" + rowID).text()), 
                     totalUnitPrice: parseFloat($("#totalUnitPrice" + rowID).text())
                 });
-            }
-                
+            }       
         }
 
         SaveDetails.forEach(function(details, index){
             db.collection("SalesDetails").add({
                 ProductName: details.name,
+                ProductCategory: details.category,
                 Quantity: details.quantity,
                 UnitPrice: details.unitPrice,
-                TotalUnitPrice: details.totalUnitPrice
+                TotalUnitPrice: details.totalUnitPrice,
+                Date: SaveDate
+
             })
             .then(function(docRef){
                 console.log("SD success!", docRef.id);
@@ -110,7 +118,7 @@ $(document).ready(function(){
                     db.collection("SalesRecord").add({
                         IDs: SaveSalesDetailsID,
                         TotalPrice: totalPrice,
-                        Date: new Date()
+                        Date: SaveDate
                     })
                     .then(function(docRef){
                         console.log("SR success!", docRef.id)

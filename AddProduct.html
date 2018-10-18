@@ -17,7 +17,7 @@
 			<div class="col-12">
 				<nav class="navbar navbar-right navbar-light">
 					<a class="navbar-brand font-weight-bold" href="#">SRePS</a>
-					<button class="btn btn-outline-light" type="submit">Log out</button>
+					<button class="btn btn-outline-light" id="LogButton" type="submit">Log In</button>
 				</nav>
 			</div>
         </div>
@@ -27,7 +27,7 @@
 				<ul class="nav flex-column nav-tabs bg-info">
 					<li class="nav-item"><a class="nav-link text-white" href="AddSales.html">Add New Sales</a></li>
 					<li class="nav-item"><a class="nav-link text-white" href="DisplayRecord.html">Manage Sales Record</a></li>
-					<li class="nav-item"><a class="nav-link active text-black" href="#home">Manage Iventory</a></li>
+					<li class="nav-item"><a class="nav-link active text-black" href="#home">Manage Inventory</a></li>
 					<li class="nav-item"><a class="nav-link text-white" href="Generate_Report.html">Generate Report & Analystic</a></li>
 				</ul>
             </nav>
@@ -36,69 +36,69 @@
 				<div class="tab-content">
 					<div class="tab-pane container active" id="home">
 
-        <h1>SALES REPORTING AND PREDICITON SYSTEM</h1>
-        <p>LOGIN FOR GAY</p>
+                        <h1>SALES REPORTING AND PREDICITON SYSTEM</h1>
+        <!-- <p>LOGIN FOR GAY</p>
         <button id="loginButton">Login here</button>
-        <button id="signoutButton">Sign out</button>
+        <button id="signoutButton">Sign out</button> -->
     
-        <form>
-            <h1 id="addProduct">Add product</h1>
-            <div class="form-group row">
-                <label for="productName">Product Name</label>   
-                <input type="text" class="form-control col-md-12" id="productName"/>
-            </div>
-            
-            <div class="form-group row">
-                <label for="productRawPrice">Product Raw Price</label>
-                <input type="number" class="form-control col-md-4" id="productRawPrice"/>
-                <label for="productPrice">Product Price</label>
-                <input type="number" class="form-control col-md-4" id="productPrice"/>
-            </div>
-    
-            <div class="form-group row">
-                <label for="productCategory">Product Category</label>
-                <input type="text" class="form-control col-md-12"id="productCategory"/>
-            </div>
-            
-        </form>
-        <button id="saveProductButton">Save Product</button>
-    
-        <form>
-            <h1 id="addCategory">Add Category</h1>
-            <label for="categoryName">Category name</label>
-            <input type="text" id="categoryName"/>
-            <br/>
-            
-        </form>
-        <button id="saveCategoryButton">Save Category</button>
-    
-        <!--Product list Table-->
-        <div class="table-responsive" > 
-            <table class="table table-striped table-hover table-bordered table-condensed" id="table">
-                <caption>Product List</caption> 
-                <thead>
-                    <tr class="success">
-                        <th scope="col">Name</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Raw Price</th>
-                        <th scope="col">Sales Price</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>            
-            </table>
-        </div>
+                        <form>
+                            <h1 id="addProduct">Add product</h1>
+                            <div class="form-group row">
+                                <label for="productName">Product Name</label>   
+                                <input type="text" class="form-control col-md-12" id="productName"/>
+                            </div>
+                            
+                            <div class="form-group row">
+                                <label for="productRawPrice">Product Raw Price</label>
+                                <input type="number" class="form-control col-md-4" id="productRawPrice"/>
+                                <label for="productPrice">Product Price</label>
+                                <input type="number" class="form-control col-md-4" id="productPrice"/>
+                            </div>
+                    
+                            <div class="form-group row">
+                                <label for="productCategory">Product Category</label>
+                                <input type="text" class="form-control col-md-12"id="productCategory"/>
+                            </div>
+                            
+                        </form>
+                        <button id="saveProductButton">Save Product</button>
+                    
+                        <form>
+                            <h1 id="addCategory">Add Category</h1>
+                            <label for="categoryName">Category name</label>
+                            <input type="text" id="categoryName"/>
+                            <br/>
+                            
+                        </form>
+                        <button id="saveCategoryButton">Save Category</button>
+                    
+                        <!--Product list Table-->
+                        <div class="table-responsive" > 
+                            <table class="table table-striped table-hover table-bordered table-condensed" id="table">
+                                <caption>Product List</caption> 
+                                <thead>
+                                    <tr class="success">
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Category</th>
+                                        <th scope="col">Raw Price</th>
+                                        <th scope="col">Sales Price</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>            
+                            </table>
+                        </div>
 
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-</div>
-</div>
-</div>
     
-    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    
     <script src="js/app.js"></script>
     <script src="js/addproduct.js"></script>
 </body>

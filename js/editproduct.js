@@ -7,17 +7,61 @@ var ProductRawprice;
 //var productCategory;localStorage.clear();
 //document.getElementById("textID").innerHTML = ProductID;
 
+//Getting value from the database and setting it into the input fields 
 db.collection("Products").doc(ProductID)
     .get()
     .then(function(doc){
         ProductName = doc.data().PName;
-        document.getElementById("textID").innerHTML = ProductID;
+        document.getElementById("productName").value = ProductName;
     })
     .catch(function(error){
         alert("Hey ERROR", error);
 });
 
-$(document).on("click","#showPID", function(){
-    alert("The product name is" + ProductName);
+db.collection("Products").doc(ProductID)
+    .get()
+    .then(function(doc){
+        ProductRawprice = doc.data().Raw_Price;
+        document.getElementById("productRawPrice").value = ProductRawprice;
+    })
+    .catch(function(error){
+        alert("Hey ERROR", error);
+});
+
+db.collection("Products").doc(ProductID)
+    .get()
+    .then(function(doc){
+        ProductSalePrice = doc.data().Sales_Price;
+        document.getElementById("productPrice").value = ProductSalePrice;
+    })
+    .catch(function(error){
+        alert("Hey ERROR", error);
+});//END OF :Getting value from the database and setting it into the input fields 
+
+
+
+//ON "SAVE CHANGES" click, update the database with current 
+$(document).on("click","#saveChangeButton", function(){
+    var newName = document.getElementById("productName").value;
+    var newRawPrice = document.getElementById("productRawPrice").value;
+    var newSalePrice = document.getElementById("productPrice").value;
+
+    db.collection("Products").doc(ProductID)
+    .update({
+        PName:''+newName+'',
+        Raw_Price: newRawPrice,
+        Sales_Price: newSalePrice
+    })
+    .then(function(doc){
+        console.log("Updated successfully")
+    })
+    .catch(function(error){
+        alert("Pname could not be updated", error);
+    });
 })
+
+
+// $(document).on("click","#showPID", function(){
+//     alert("The product name is" + ProductName);
+// })
 

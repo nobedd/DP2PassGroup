@@ -21,68 +21,68 @@
             </div>
         </div>
         
-                <div class="row">
-                    <nav class="col-md-auto pr-0 bg-info">
-                        <ul class="nav flex-column nav-tabs">
-                            <li class="nav-item"><a class="nav-link active text-black" href="#home">Add New Sales</a></li>
-                            <li class="nav-item"><a class="nav-link text-white" href="DisplayRecord.html">Manage Sales Record</a></li>
-                            <li class="nav-item"><a class="nav-link text-white" href="AddProduct.html">Manage Inventory</a></li>
-                            <li class="nav-item"><a class="nav-link text-white" href="Generate_Report.html">Generate Report & Analystic</a></li>
-                        </ul>
-                    </nav>
+        <div class="row">
+            <nav class="col-md-auto pr-0 bg-info">
+                <ul class="nav flex-column nav-tabs">
+                    <li class="nav-item"><a class="nav-link active text-black" href="#home">Add New Sales</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="DisplayRecord.html">Manage Sales Record</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="AddProduct.html">Manage Inventory</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="Generate_Report.html">Generate Report & Analystic</a></li>
+                </ul>
+            </nav>
 
-        <!--Login-->
-        <div class="col-8 bg-white pt-3 text-black">
-				<div class="tab-content">
-					<div class="tab-pane container active" id="home">
-        <h1>SALES REPORTING AND PREDICITON SYSTEM</h1>
-        <!-- <p>LOGIN FOR GAY</p>    
-        <button id="loginButton">Login here</button>
-        <button id="signoutButton">Sign out</button> -->
-    
-        <!--Add Sales control-->
-        <form id="addSalesForm" onsubmit="return false">
-            <div class="form-group">
-                <h1>Add Sales Details</h1>
-                <table class="table table-bordered" id="dynamic_SalesDetailsField">
-                    <thead>
-                        <tr>
-                            <th scope="col">Select Product</th>
-                            <th scope="col">Enter Quantity</th>
-                            <th scope="col">Unit Price</th>
-                            <th scope="col">Total Unit Price</th>
-                            <th scope="col">Add</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr id=0>
-                            <td class="onChangeUpdatePrice">
-                                <select id="dropdownDetails0" class="custom-select" required>
-                                    <option value="">Select a product to add</option>
-                                </select>
-                            </td> 
-                            <td class="onChangeUpdatePrice"><input type="number" id="inputDetailsQuantity0" class="form-control" placeholder="Enter quantity" min="1" required /></td>   
-                            <td class="unitPrice" id="unitPrice0"></td>
-                            <td class="totalUnitPrice" id="totalUnitPrice0"></td>
-                            <td><button id="add" class="btn btn-success">Add</button></td>     
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <td></td>
-                        <td></td>
-                        <td>Total Price</td>
-                        <td id="totalPrice"></td>
-                        <td></td>
-                    </tfoot>
-                </table>      
+            <!--Login-->
+            <div class="col-8 bg-white pt-3 text-black">
+                <div class="tab-content">
+                    <div class="tab-pane container active" id="home">
+                        <h1>SALES REPORTING AND PREDICITON SYSTEM</h1>
+                        <p>LOGIN FOR GAY</p>    
+                        <button id="loginButton">Login here</button>
+                        <button id="signoutButton">Sign out</button>
+                    
+                        <!--Add Sales control-->
+                        <form id="addSalesForm" onsubmit="return false">
+                            <div class="form-group">
+                                <h1>Add Sales Details</h1>
+                                <table class="table table-bordered" id="dynamic_SalesDetailsField">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Select Product</th>
+                                            <th scope="col">Enter Quantity</th>
+                                            <th scope="col">Unit Price</th>
+                                            <th scope="col">Total Unit Price</th>
+                                            <th scope="col">Add</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr id=0>
+                                            <td class="onChangeUpdatePrice">
+                                                <select id="dropdownDetails0" class="custom-select" required>
+                                                    <option value="">Select a product to add</option>
+                                                </select>
+                                            </td> 
+                                            <td class="onChangeUpdatePrice"><input type="number" id="inputDetailsQuantity0" class="form-control" placeholder="Enter quantity" min="1" required /></td>   
+                                            <td class="unitPrice" id="unitPrice0"></td>
+                                            <td class="totalUnitPrice" id="totalUnitPrice0"></td>
+                                            <td><button id="add" class="btn btn-success">Add</button></td>     
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <td></td>
+                                        <td></td>
+                                        <td>Total Price</td>
+                                        <td id="totalPrice"></td>
+                                        <td></td>
+                                    </tfoot>
+                                </table>      
+                            </div>
+                            <button id="saveSales" type="submit" class="btn btn-primary">Save Sales</button>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <button id="saveSales" type="submit" class="btn btn-primary">Save Sales</button>
-        </form>
+        </div>
     </div>
-</div>
-</div>
-</div>
-</div>
     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

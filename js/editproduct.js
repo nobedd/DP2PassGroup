@@ -4,8 +4,30 @@ var ProductID = localStorage.getItem("PID");
 var ProductName;
 var ProductSalePrice;
 var ProductRawprice;
-//var productCategory;localStorage.clear();
+var productCategory;
+// localStorage.clear();
 //document.getElementById("textID").innerHTML = ProductID;
+
+//Populate select dropdown with products function
+function populateSelectDropdownCategory(i){
+    if (i === undefined)
+        i = "";
+
+    db.collection("Categories")
+    .get()
+    .then(function(querySnapshot){     
+        var content = "";
+        var value = 1;
+        querySnapshot.forEach (function(doc){
+            content += "<option value='" + value + "'>" + doc.data().Category + "</option>";
+            value++;
+    })
+    $('#dropdownCategory' + i).append(content);
+    })
+}
+//Populate the first row in view
+populateSelectDropdownCategory(0);
+
 
 //Getting value from the database and setting it into the input fields 
 db.collection("Products").doc(ProductID)
@@ -36,6 +58,20 @@ db.collection("Products").doc(ProductID)
     })
     .catch(function(error){
         alert("Hey ERROR", error);
+});
+
+db.collection("Products").doc(ProductID)
+    .get()
+    .then(function(doc){
+        productCategory = doc.data().Category;
+
+        $('#dropdownCategory0 option').map(function () {
+        if ($(this).text() == productCategory) return this;
+        }).attr('selected', 'selected'); 
+
+    })
+    .catch(function(error){
+        alert("Hey ERROR", error);
 });//END OF :Getting value from the database and setting it into the input fields 
 
 
@@ -61,7 +97,7 @@ $(document).on("click","#saveChangeButton", function(){
 })
 
 
-// $(document).on("click","#showPID", function(){
-//     alert("The product name is" + ProductName);
-// })
+$(document).on("click","#showPID", function(){
+    alert("The product ID is: " + ProductID);
+})
 

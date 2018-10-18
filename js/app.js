@@ -13,22 +13,39 @@
     const settings = {/* your settings... */ timestampsInSnapshots: true};
     firestore.settings(settings);
 
-    loginButton.addEventListener("click", function(){
-        firebase.auth().signInAnonymously();
+    var AccountBool;
+
+    LogButton.addEventListener("click", function(){
+        if (!AccountBool){
+            firebase.auth().signInAnonymously();
+            LogButton.innerText = "Log Out";
+            AccountBool = true
+        }
+        else{
+            firebase.auth().signOut();
+            LogButton.innerText = "Log In";
+            AccountBool = false
+        }
     });
 
-    signoutButton.addEventListener("click", function(){
-        firebase.auth().signOut();
-    })
+    // loginButton.addEventListener("click", function(){
+    //     firebase.auth().signInAnonymously();
+    // });
+
+    // signoutButton.addEventListener("click", function(){
+    //     firebase.auth().signOut();
+    // })
 
     firebase.auth().onAuthStateChanged(function(user){
         console.log(user);
         if(user){
             console.log("you have signed in")
-            document.getElementById("signoutButton").style.visibility = "visible"
+            // document.getElementById("signoutButton").style.visibility = "visible"
+            AccountBool = true
         } else{
             console.log("you have signed off");
-            document.getElementById("signoutButton").style.visibility = "hidden"
+            // document.getElementById("signoutButton").style.visibility = "hidden"
+            AccountBool = false
         }
     })
 //})

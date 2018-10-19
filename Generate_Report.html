@@ -39,58 +39,88 @@
                         <button id="loginButton">Login here</button>
                         <button id="signoutButton">Sign out</button>
 
-                        <form>
+                        <form onsubmit="return false">
                             <h1>Genarate Reports & Analystics</h1>
-                            <div>
-                                <label for = "SalesReport&Analystics">Choose Sales:</label>
-                                <input type="radio" class="documenttypes" id="SalesReport&Analystics" value="Reports"/>Reports
-                                <input type="radio" class="documenttypes" id="SalesReport&Analystics" value="Analystics"/>Analystics
+                            <div class="form-row">
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" name="radio1" id="SelectedRadio1"/>
+                                    <label class="custom-control-label" for ="SelectedRadio1">Report</label>
+                                </div>
+
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" name="radio1" id="SelectedRadio2"/>
+                                    <label class="custom-control-label" for ="SelectedRadio2">Analytics</label>
+                                </div>
                             </div>
 
-                            <div>
-                                <label for = "startDate">Start Date:</label>
-                                <input type="date" class="Date" id="startDate"/>
+                            <div class="form-row">
+                                <div class="col-6">
+                                    <label for="startDate">Start Date:</label>
+                                    <input type="date" class="Date" id="startDate"/>
+                                </div>
+                                
+                                <div class="col-6">
+                                    <label for="endDate">End Date:</label>
+                                    <input type="date" class="Date" id="endDate"/>
+                                </div>
                             </div>
 
-                            <div>
-                                <label for = "endDate">End Date:</label>
-                                <input type="date" class="Date" id="endDate"/>
+                            <div class="form-row">
+                                <p>Choose period:</p>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" name="radioPeriod" id="radioPeriodWeekly"/>
+                                    <label class="custom-control-label" for ="radioPeriodWeekly">Weekly</label>
+                                </div>
+
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" name="radioPeriod" id="radioPeriodMonthly"/>
+                                    <label class="custom-control-label" for ="radioPeriodMonthly">Monthly</label>
+                                </div>
+
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" name="radioPeriod" id="radioPeriodYearly"/>
+                                    <label class="custom-control-label" for ="radioPeriodYearly">Yearly</label>
+                                </div>
                             </div>
 
-                            <div>
-                                <label for="period">Choose period:</label>
-                                <input type="radio" class="periodType" id="period" value="Weekly"/>Weekly
-                                <input type="radio" class="periodType" id="period" value="Monthly"/>Monthly
-                                <input type="radio" class="periodType" id="period" value="Yearly"/>Yearly
+                            <div class="form-row">
+                                <div class="col-6">
+                                    <select id="dropdownProducts" class="custom-select" required>
+                                        <option value="">Select a product</option>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <select id="dropdownCategory" class="custom-select" required>
+                                        <option value="">Select a category</option>
+                                    </select>
+                                </div>     
                             </div>
-
-                            <div>
-                                <label for="sortBy">Genarate By:</label>
-                                    <input type="radio" class="sortBy" id="sortBy" value="Product"/>Product
-                                    <input list="Product" class="itemList" id="itemList" />
-                                    <input type="radio" class="sortBy" id="sortBy" value="Categories"/>Categories
-                                    <input list="Product" class="itemList" id="itemList" />
+                            <div class="form-row">
+                                <button id="generateTableButton" class="btn btn-primary">Genarate Table</button>
                             </div>
-
-                            <div>
-                            <button id="generateGraphsButton">Genarate Graphs</button>
-                            <button id="generateTableButton">Genarate Table</button>
-                            </div>
-                            <div>
-                            <button id="ExportReportsButton">Export Reports</button>
+                            <div class="form-row">
+                                <button id="generateGraphsButton" class="btn btn-primary" disabled>Genarate Graphs</button>
+                                <button id="ExportReportsButton" class="btn btn-primary"disabled>Export Reports</button>
                             </div>
                         </form>
-
-                        <table class="table table-bordered">
+                        <br/>
+                        <table class="table table-bordered" id="table">
                             <thead>
                                 <th>Product name</th>
                                 <th>Category</th>
                                 <th>Unit Price</th>
                                 <th>Quantity Sold</th>
-                                <th>Profit made</th>
+                                <th>Revenue</th>
+
                             </thead>
                             <tbody></tbody>
+                            <tfoot>
+                                <tr>Report Summary</tr>
+                                <tr></tr>
+                                <tr></tr>
+                            </tfoot>
                         </table>
+
                     </div>
                 </div>
             </div>
@@ -101,6 +131,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="js/app.js"></script>
+<script src="js/generateReport.js"></script>
 
 </body>
 

@@ -32,9 +32,8 @@
 			</nav>
 
             <div class="col-8 bg-white pt-3 text-black">
-                    <div class="tab-content">
-                        <div class="tab-pane container active" id="home">
-
+                <div class="tab-content">
+                    <div class="tab-pane container active" id="home">
                         <h1>SALES REPORTING AND PREDICITON SYSTEM</h1>
                         <p>LOGIN FOR GAY</p>   
                         <button id="loginButton">Login here</button>
@@ -50,12 +49,12 @@
 
                             <div>
                                 <label for = "startDate">Start Date:</label>
-                                <input type="date" = class = "Date" id = "startDate"/>
+                                <input type="date" class="Date" id="startDate"/>
                             </div>
 
                             <div>
                                 <label for = "endDate">End Date:</label>
-                                <input type="date" = class = "Date" id = "endDate"/>
+                                <input type="date" class="Date" id="endDate"/>
                             </div>
 
                             <div>
@@ -80,8 +79,18 @@
                             <div>
                             <button id="ExportReportsButton">Export Reports</button>
                             </div>
-
                         </form>
+
+                        <table class="table table-bordered">
+                            <thead>
+                                <th>Product name</th>
+                                <th>Category</th>
+                                <th>Unit Price</th>
+                                <th>Quantity Sold</th>
+                                <th>Profit made</th>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
                     </div>
                 </div>
             </div>

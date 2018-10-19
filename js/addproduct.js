@@ -6,6 +6,24 @@
     const inputProductRawPrice = document.querySelector("#productRawPrice");
     const inputProductCategory = document.querySelector("#productCategory");
 
+    //Populate select dropdown with products function
+    function populateSelectDropdownCategory(){
+        db.collection("Categories")
+        .get()
+        .then(function(querySnapshot){     
+            var content = "";
+            var value = 1;
+            querySnapshot.forEach (function(doc){
+                content += "<option value='" + value + "'>" + doc.data().Category + "</option>";
+                value++;
+            })
+            $('#dropdownCategory').append(content);
+        })
+    }
+    //Populate the first row in view
+    populateSelectDropdownCategory();
+
+
     saveProductButton.addEventListener("click", function(){
         const SaveProductName = inputProductName.value;
         const SaveProductPrice = inputProductPrice.value;

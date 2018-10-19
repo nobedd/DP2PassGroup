@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="row bg-info">
+		<div class="row bg-info">   
 			<div class="col-12">
 				<nav class="navbar navbar-right navbar-light">
 					<a class="navbar-brand font-weight-bold" href="#">SRePS</a>
@@ -24,20 +24,22 @@
         
 		<div class="row">
 			<nav class="col-md-auto pr-0 bg-info">
-				<ul class="nav flex-column nav-tabs bg-info">
-					<li class="nav-item"><a class="nav-link text-white" href="AddSales.html">Add New Sales</a></li>
-					<li class="nav-item"><a class="nav-link text-white" href="DisplayRecord.html">Manage Sales Record</a></li>
-					<li class="nav-item"><a class="nav-link active text-black" href="#home">Manage Inventory</a></li>
-					<li class="nav-item"><a class="nav-link text-white" href="Generate_Report.html">Generate Report & Analystic</a></li>
-				</ul>
+                <ul class="nav flex-column nav-tabs bg-info">
+                    <li class="nav-item"><a class="nav-link text-white" href="AddSales.html">Add New Sales</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="DisplayRecord.html">Manage Sales Record</a></li>
+                    <li class="nav-item"><a class="nav-link active text-black" href="AddProduct.html">Add New Product</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="Generate_Report.html">Generate Report & Analystic</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="inventoryMain.html">Manage Inventory</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="login.html">Login_Page</a></li>
+                </ul>
             </nav>
             
 			<div class="col-8 bg-white pt-3 text-black">
 				<div class="tab-content">
 					<div class="tab-pane container active" id="home">
 
-                        <h1>SALES REPORTING AND PREDICITON SYSTEM</h1>
-                        <p>LOGIN FOR GAY</p>
+                        <!-- <h1>SALES REPORTING AND PREDICITON SYSTEM</h1> -->
+                        <!-- <p>LOGIN FOR GAY</p> -->
                         <button id="loginButton">Login here</button>
                         <button id="signoutButton">Sign out</button>
     
@@ -56,8 +58,11 @@
                             </div>
                     
                             <div class="form-group row">
-                                <label for="productCategory">Product Category</label>
-                                <input type="text" class="form-control col-md-12"id="productCategory"/>
+                                <label for="dropdownCategory">Product Category</label>
+                                <!-- <input type="text" class="form-control col-md-12" id="productCategory" disabled /> -->
+                                <select id="dropdownCategory" class="custom-select" required>
+                                    <option value="">Select a product to add</option>
+                                </select>
                             </div>
                             
                         </form>

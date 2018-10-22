@@ -43,8 +43,8 @@
 
                         <form onsubmit="return false">
                             <h1>Genarate Reports & Analytics</h1>
-                            <p>Current program doesn't refresh the table if you try to generate a table again</p>
-                            <div class="form-row">
+                            <!-- What is this????? -->
+                            <!-- <div class="form-row">
                                 <div class="custom-control custom-radio custom-control-inline">
                                     <input type="radio" class="custom-control-input" name="radio1" id="SelectedRadio1"/>
                                     <label class="custom-control-label" for ="SelectedRadio1">Report</label>
@@ -53,6 +53,29 @@
                                 <div class="custom-control custom-radio custom-control-inline">
                                     <input type="radio" class="custom-control-input" name="radio1" id="SelectedRadio2"/>
                                     <label class="custom-control-label" for ="SelectedRadio2">Analytics</label>
+                                </div>
+                            </div> -->
+
+                            <div class="form-row">
+                                <p>Choose period:</p>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodDaily"/>
+                                    <label class="custom-control-label" for="radioPeriodDaily">Daily</label>
+                                </div>
+
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodWeekly"/>
+                                    <label class="custom-control-label" for="radioPeriodWeekly">Weekly</label>
+                                </div>
+
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodMonthly"/>
+                                    <label class="custom-control-label" for="radioPeriodMonthly">Monthly</label>
+                                </div>
+
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodYearly"/>
+                                    <label class="custom-control-label" for="radioPeriodYearly">Yearly</label>
                                 </div>
                             </div>
 
@@ -64,25 +87,7 @@
                                 
                                 <div class="col-6">
                                     <label for="endDate">End Date:</label>
-                                    <input type="date" class="date" id="endDate"/>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <p>Choose period:</p>
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input" name="radioPeriod" id="radioPeriodWeekly"/>
-                                    <label class="custom-control-label" for ="radioPeriodWeekly">Weekly</label>
-                                </div>
-
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input" name="radioPeriod" id="radioPeriodMonthly"/>
-                                    <label class="custom-control-label" for ="radioPeriodMonthly">Monthly</label>
-                                </div>
-
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input" name="radioPeriod" id="radioPeriodYearly"/>
-                                    <label class="custom-control-label" for ="radioPeriodYearly">Yearly</label>
+                                    <input type="date" class="date" id="endDate" disabled/>
                                 </div>
                             </div>
 

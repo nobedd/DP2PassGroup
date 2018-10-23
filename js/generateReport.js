@@ -1,45 +1,34 @@
 $(document).ready(function(){
     var db = firebase.firestore();
-    var ProductsList = [];
+    var ProductList = [];
+    
+    $("#radioPeriodDaily").prop('checked', true);
 
-    db.collection("Products").orderBy("PName", "asc")
-    .get()
-    .then(function(querySnapshot){
-        var content = "";
-        var value = 0;
-        querySnapshot.forEach(function(doc){
-            content += "<option value='" + value + "'>" + doc.data().PName + "</option>";
-            ProductsList.push(doc.data());
-        })
-        $('#dropdownProducts').append(content);
-    });
-
-    db.collection("Categories").orderBy("Category", "asc")
-    .get()
-    .then(function(querySnapshot){
-        var content = "";
-        var value = 0;
-        querySnapshot.forEach(function(doc){
-            content += "<option value='" + value + "'>" + doc.data().Category + "</option>";
-        })
-        $('#dropdownCategory').append(content);
-    });
-
-    $(document).on("change", ".radioPeriod", function(){
+    $(document).on("change", ".radioPeriod, #startDate", function(){
         var startDate = new Date($("#startDate").val());
         var daily = (startDate.getFullYear() + "-" + (startDate.getMonth()+1) + "-" + (startDate.getDate()+1));
         var monthly = (startDate.getFullYear() + "-" + (startDate.getMonth()+1) + "-" + (startDate.getDate()+7));
         var weekly = (startDate.getFullYear() + "-" + (startDate.getMonth()+2) + "-" + startDate.getDate());
         var yearly =((startDate.getFullYear()+1) + "-" + (startDate.getMonth()+1) + "-" + startDate.getDate());
 
-        if($(this).attr("id") == "radioPeriodDaily")
-            $("#endDate").attr("min", daily).attr("max", daily).val(daily);
-        else if($(this).attr("id") == "radioPeriodWeekly")
-            $("#endDate").attr("min", monthly).attr("max", monthly).val(monthly);
-        else if($(this).attr("id") == "radioPeriodMonthly")
-            $("#endDate").attr("min", weekly).attr("max", weekly).val(weekly);
-        else
-            $("#endDate").attr("min", yearly).attr("max", yearly).val(yearly);
+        if ($("#radioPeriodCustom").is(":checked"))
+            $("#endDate").attr("min", "").attr("max", "").prop('disabled', false);
+        else if($("#radioPeriodDaily").is(":checked"))
+            $("#endDate").attr("min", daily).attr("max", daily).val(daily).prop('disabled', true);
+        else if($("#radioPeriodWeekly").is(":checked"))
+            $("#endDate").attr("min", monthly).attr("max", monthly).val(monthly).prop('disabled', true);
+        else if($("#radioPeriodMonthly").is(":checked"))
+            $("#endDate").attr("min", weekly).attr("max", weekly).val(weekly).prop('disabled', true);
+        else if($("#radioPeriodYearly").is(":checked"))
+            $("#endDate").attr("min", yearly).attr("max", yearly).val(yearly).prop('disabled', true);
+    })
+
+    db.collection("Products").orderBy("PName", "asc")
+    .get()
+    .then(function(querySnapshot){
+        querySnapshot.forEach(function(doc){
+            ProductList.push(doc.data());
+        })
     })
 
     $('#generateTableButton').click(function(){
@@ -48,8 +37,8 @@ $(document).ready(function(){
         var endDate = new Date($("#endDate").val());
 
         $("#tbodyID").empty();
-
-        ProductsList.forEach(function(ProductDetails, index){
+        
+        ProductList.forEach(function(ProductDetails, index){
             db.collection("SalesDetails").where("ProductName", "==", ProductDetails.PName).where("Date", ">", startDate).where("Date", "<", endDate)
             .get()
             .then(function(querySnapshot){
@@ -59,6 +48,7 @@ $(document).ready(function(){
                 querySnapshot.forEach(function(doc){
                     quantitySold += doc.data().Quantity;
                 })
+
                 //table tbody
                 if(quantitySold != 0){
                     revenue = ProductDetails.Sales_Price * quantitySold;
@@ -78,7 +68,7 @@ $(document).ready(function(){
                     $('#table').append(content);
                 }
                 //Report Summary tfoot
-                if(index == ProductsList.length-1){
+                if(index == ProductList.length-1){
                     $("#totalQuantity").text(totalQuantity); 
                     $("#totalRevenue").text((totalRevenue).toFixed(2)); 
                     $("#totalGrossMargin").text((totalGrossMargin).toFixed(2)); 

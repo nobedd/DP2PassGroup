@@ -4,7 +4,8 @@
     const inputProductName = document.querySelector("#productName");
     const inputProductPrice = document.querySelector("#productPrice");
     const inputProductRawPrice = document.querySelector("#productRawPrice");
-    const inputProductCategory = document.querySelector("#productCategory");
+    
+
 
     //Populate select dropdown with products function
     function populateSelectDropdownCategory(){
@@ -28,12 +29,13 @@
         const SaveProductName = inputProductName.value;
         const SaveProductPrice = inputProductPrice.value;
         const SaveProductRawPrice = inputProductRawPrice.value;
-        const SaveProductCategory = inputProductCategory.value;
+        var selectedCategory = $("#dropdownCategory option:selected").text()
+
         db.collection("Products").add({
             PName: SaveProductName,
             Sales_Price: SaveProductPrice,
             Raw_Price: SaveProductRawPrice,
-            Category: SaveProductCategory,
+            Category: selectedCategory,
             archive: false
         })
         .then(function(docRef){
@@ -43,6 +45,8 @@
             console.log("Got an error: ", error);
         }); 
     });
+
+    // Below is just to display the table
     var productIDs = [];
     db.collection("Products")
         .get()
@@ -54,7 +58,7 @@
                 content += '<td>' + doc.data().Category + '</td>';
                 content += '<td>' + doc.data().Raw_Price + '</td>';
                 content += '<td>' + doc.data().Sales_Price + '</td>';
-                content += '<td>' + '<Button>Edit</Button>' + '</td>';
+                // content += '<td>' + '<Button>Edit</Button>' + '</td>';
                 content += '</tr>';
         })
         $('#table').append(content);
@@ -74,5 +78,10 @@
         });
     });
 
+    //TEST BUTTON. To see if something works
+    $(document).on("click","#testbtn", function(){
+        
+    //  alert(selectedCategory)
+    })
 
 //});

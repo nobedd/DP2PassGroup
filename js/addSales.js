@@ -6,7 +6,7 @@ $(document).ready(function(){
     var formTableRowCount = 0;
 
     //Populate Map for ProductName : SellingPrice
-    db.collection("Products")
+    db.collection("Products").orderBy("PName","asc")
     .get()
     .then(function(querySnapshot){
         querySnapshot.forEach(function(doc){
@@ -20,7 +20,7 @@ $(document).ready(function(){
         if (i === undefined)
             i = "";
 
-        db.collection("Products")
+        db.collection("Products").orderBy("PName","asc")
         .get()
         .then(function(querySnapshot){     
             var content = "";

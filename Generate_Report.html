@@ -41,18 +41,6 @@
                         
                         <form onsubmit="return false">
                             <h1>Genarate Reports & Analytics</h1>
-                            <!-- What is this????? -->
-                            <!-- <div class="form-row">
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input" name="radio1" id="SelectedRadio1"/>
-                                    <label class="custom-control-label" for ="SelectedRadio1">Report</label>
-                                </div>
-
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input" name="radio1" id="SelectedRadio2"/>
-                                    <label class="custom-control-label" for ="SelectedRadio2">Analytics</label>
-                                </div>
-                            </div> -->
 
                             <div class="form-row">
                                 <p>Choose period:</p>
@@ -75,6 +63,11 @@
                                     <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodYearly"/>
                                     <label class="custom-control-label" for="radioPeriodYearly">Yearly</label>
                                 </div>
+
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodCustom"/>
+                                    <label class="custom-control-label" for="radioPeriodCustom">Custom</label>
+                                </div>
                             </div>
 
                             <div class="form-row">
@@ -89,18 +82,6 @@
                                 </div>
                             </div>
 
-                            <div class="form-row">
-                                <div class="col-6">
-                                    <select id="dropdownProducts" class="custom-select" required>
-                                        <option value="">Select a product</option>
-                                    </select>
-                                </div>
-                                <div class="col-6">
-                                    <select id="dropdownCategory" class="custom-select" required>
-                                        <option value="">Select a category</option>
-                                    </select>
-                                </div>     
-                            </div>
                             <div class="form-row">
                                 <!-- <button id="generateTableButton" class="btn btn-primary">Genarate Table</button> -->
                             </div>

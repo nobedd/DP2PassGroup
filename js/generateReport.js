@@ -1,6 +1,7 @@
 $(document).ready(function(){
     var db = firebase.firestore();
     var ProductsList = [];
+    $("#radioPeriodDaily").prop('checked', true);
 
     db.collection("Products").orderBy("PName", "asc")
     .get()
@@ -32,14 +33,16 @@ $(document).ready(function(){
         var weekly = (startDate.getFullYear() + "-" + (startDate.getMonth()+2) + "-" + startDate.getDate());
         var yearly =((startDate.getFullYear()+1) + "-" + (startDate.getMonth()+1) + "-" + startDate.getDate());
 
-        if($(this).attr("id") == "radioPeriodDaily")
-            $("#endDate").attr("min", daily).attr("max", daily).val(daily);
+        if ($(this).attr("id") == "radioPeriodCustom")
+            $("#endDate").prop('disabled', false);
+        else if($(this).attr("id") == "radioPeriodDaily")
+            $("#endDate").attr("min", daily).attr("max", daily).val(daily).prop('disabled', true);
         else if($(this).attr("id") == "radioPeriodWeekly")
-            $("#endDate").attr("min", monthly).attr("max", monthly).val(monthly);
+            $("#endDate").attr("min", monthly).attr("max", monthly).val(monthly).prop('disabled', true);
         else if($(this).attr("id") == "radioPeriodMonthly")
-            $("#endDate").attr("min", weekly).attr("max", weekly).val(weekly);
+            $("#endDate").attr("min", weekly).attr("max", weekly).val(weekly).prop('disabled', true);
         else
-            $("#endDate").attr("min", yearly).attr("max", yearly).val(yearly);
+            $("#endDate").attr("min", yearly).attr("max", yearly).val(yearly).prop('disabled', true);
     })
 
     $('#generateTableButton').click(function(){

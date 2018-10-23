@@ -3,47 +3,25 @@ $(document).ready(function(){
     var ProductsList = [];
     $("#radioPeriodDaily").prop('checked', true);
 
-    db.collection("Products").orderBy("PName", "asc")
-    .get()
-    .then(function(querySnapshot){
-        var content = "";
-        var value = 0;
-        querySnapshot.forEach(function(doc){
-            content += "<option value='" + value + "'>" + doc.data().PName + "</option>";
-            ProductsList.push(doc.data());
-        })
-        $('#dropdownProducts').append(content);
-    });
-
-    db.collection("Categories").orderBy("Category", "asc")
-    .get()
-    .then(function(querySnapshot){
-        var content = "";
-        var value = 0;
-        querySnapshot.forEach(function(doc){
-            content += "<option value='" + value + "'>" + doc.data().Category + "</option>";
-        })
-        $('#dropdownCategory').append(content);
-    });
-
-    $(document).on("change", ".radioPeriod", function(){
+    $(document).on("change", ".radioPeriod, #startDate", function(){
         var startDate = new Date($("#startDate").val());
         var daily = (startDate.getFullYear() + "-" + (startDate.getMonth()+1) + "-" + (startDate.getDate()+1));
         var monthly = (startDate.getFullYear() + "-" + (startDate.getMonth()+1) + "-" + (startDate.getDate()+7));
         var weekly = (startDate.getFullYear() + "-" + (startDate.getMonth()+2) + "-" + startDate.getDate());
         var yearly =((startDate.getFullYear()+1) + "-" + (startDate.getMonth()+1) + "-" + startDate.getDate());
 
-        if ($(this).attr("id") == "radioPeriodCustom")
-            $("#endDate").prop('disabled', false);
-        else if($(this).attr("id") == "radioPeriodDaily")
+        if ($("#radioPeriodCustom").is(":checked"))
+            $("#endDate").attr("min", "").attr("max", "").prop('disabled', false);
+        else if($("#radioPeriodDaily").is(":checked"))
             $("#endDate").attr("min", daily).attr("max", daily).val(daily).prop('disabled', true);
-        else if($(this).attr("id") == "radioPeriodWeekly")
+        else if($("#radioPeriodWeekly").is(":checked"))
             $("#endDate").attr("min", monthly).attr("max", monthly).val(monthly).prop('disabled', true);
-        else if($(this).attr("id") == "radioPeriodMonthly")
+        else if($("#radioPeriodMonthly").is(":checked"))
             $("#endDate").attr("min", weekly).attr("max", weekly).val(weekly).prop('disabled', true);
-        else
+        else if($("#radioPeriodYearly").is(":checked"))
             $("#endDate").attr("min", yearly).attr("max", yearly).val(yearly).prop('disabled', true);
     })
+
 
     $('#generateTableButton').click(function(){
         var totalQuantity=0, totalRevenue=0, totalGrossMargin=0;

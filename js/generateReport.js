@@ -1,6 +1,7 @@
 $(document).ready(function(){
     var db = firebase.firestore();
-    var ProductsList = [];
+    var ProductList = [];
+    
     $("#radioPeriodDaily").prop('checked', true);
 
     $(document).on("change", ".radioPeriod, #startDate", function(){
@@ -22,6 +23,13 @@ $(document).ready(function(){
             $("#endDate").attr("min", yearly).attr("max", yearly).val(yearly).prop('disabled', true);
     })
 
+    db.collection("Products").orderBy("PName", "asc")
+    .get()
+    .then(function(querySnapshot){
+        querySnapshot.forEach(function(doc){
+            ProductList.push(doc.data());
+        })
+    })
 
     $('#generateTableButton').click(function(){
         var totalQuantity=0, totalRevenue=0, totalGrossMargin=0;
@@ -29,8 +37,8 @@ $(document).ready(function(){
         var endDate = new Date($("#endDate").val());
 
         $("#tbodyID").empty();
-
-        ProductsList.forEach(function(ProductDetails, index){
+        
+        ProductList.forEach(function(ProductDetails, index){
             db.collection("SalesDetails").where("ProductName", "==", ProductDetails.PName).where("Date", ">", startDate).where("Date", "<", endDate)
             .get()
             .then(function(querySnapshot){
@@ -40,6 +48,7 @@ $(document).ready(function(){
                 querySnapshot.forEach(function(doc){
                     quantitySold += doc.data().Quantity;
                 })
+
                 //table tbody
                 if(quantitySold != 0){
                     revenue = ProductDetails.Sales_Price * quantitySold;
@@ -59,7 +68,7 @@ $(document).ready(function(){
                     $('#table').append(content);
                 }
                 //Report Summary tfoot
-                if(index == ProductsList.length-1){
+                if(index == ProductList.length-1){
                     $("#totalQuantity").text(totalQuantity); 
                     $("#totalRevenue").text((totalRevenue).toFixed(2)); 
                     $("#totalGrossMargin").text((totalGrossMargin).toFixed(2)); 

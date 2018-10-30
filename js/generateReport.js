@@ -78,7 +78,17 @@ $(document).ready(function(){
             })     
         })
 
+    })
 
+    $('#exportTableButton').click(function(){
+        if($("#table tbody").is(":empty")){
+            alert("Table is empty, please generate the table first");
+        }
+        else{
+            $("#table").first().table2csv();
+            $('#table').table2csv('download', options)
+        }
+        
     })
     
     

@@ -94,32 +94,22 @@ buttonDeleteCategory.addEventListener("click", function(){
     // console.log(selectedDeleteText)
     //delete from the database:
     db.collection("Categories").doc(selectedDeleteID).delete().then(function() {
-        console.log("Category successfully deleted!");
+        console.log("Category"+ selectedDeleteText+"successfully deleted!");
         populateSelectDropdownCategory();//repopulate the list
+
+        var batch = db.batch();
+        var allmatching = db.collection("SalesDetails").where('ProductCategory','==',selectedDeleteText);
+        batch.update(allmatching, {"ProductCategory": "NIL"});//update the rest of the docs
+
     }).catch(function(error) {
         console.error("Error removing document: ", error);
     });
 
+    // db.collection("SalesDetails").where('ProductCategory','==',selectedDeleteText)
+    // Update the population of 'SF'
+
+
 });
 
 
-
-    // Below is just to display the table
-    // var productIDs = [];
-    // db.collection("Products")
-    //     .get()
-    //     .then(function(querySnapshot){     
-    //         var content = "";
-    //         querySnapshot.forEach (function(doc){
-    //             content += '<tr>';
-    //             content += '<td>' + doc.data().PName + '</td>';
-    //             content += '<td>' + doc.data().Category + '</td>';
-    //             content += '<td>' + doc.data().Raw_Price + '</td>';
-    //             content += '<td>' + doc.data().Sales_Price + '</td>';
-    //             // content += '<td>' + '<Button>Edit</Button>' + '</td>';
-    //             content += '</tr>';
-    //     })
-    //     $('#table').append(content);
-    // })
-    
 

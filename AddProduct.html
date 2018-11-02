@@ -44,19 +44,19 @@
                             
                         <form>
                             <h1 id="addProduct">Add product</h1>
-                            <div class="form-group row">
+                            <div class="form-group row ml-0">
                                 <label for="productName">Product Name</label>   
                                 <input type="text" class="form-control col-md-12" id="productName"/>
                             </div>
                             
-                            <div class="form-group row">
+                            <div class="form-group row ml-0">
                                 <label for="productRawPrice">Product Raw Price</label>
-                                <input type="number" class="form-control col-md-4" id="productRawPrice"/>
-                                <label for="productPrice">Product Price</label>
-                                <input type="number" class="form-control col-md-4" id="productPrice"/>
+                                <input type="number" class="form-control col-md-2 ml-2" id="productRawPrice"/>
+                                <label for="productPrice" class="ml-3">Product Price</label>
+                                <input type="number" class="form-control col-md-2 ml-2" id="productPrice"/>
                             </div>
                     
-                            <div class="form-group row">
+                            <div class="form-group row ml-0">
                                 <label for="dropdownCategory">Product Category</label>
                                 <!-- <input type="text" class="form-control col-md-12" id="productCategory" disabled /> -->
                                 <select id="dropdownCategory" class="custom-select" required>
@@ -65,18 +65,21 @@
                             </div>
                             
                         </form>
-                        <button id="saveProductButton">Save Product</button>
-                    
+                        <button id="saveProductButton" class="btn btn-outline-primary">Save Product</button>
+
+                        
                         <form>
+                            <br>
                             <h2 id="addCategory">Add a new Category</h2>
                             <label for="categoryName">Category name</label>
                             <input type="text" id="categoryName"/>
                         </form>
-                        <button id="saveCategoryButton">Save Category</button>
-                        
+                        <br>
+                        <button id="saveCategoryButton" class="btn btn-outline-primary">Save Category</button>
                     
                         <!--Product list Table-->
-                        <div class="table-responsive" > 
+                        <div class="table-responsive" >
+                            <br> 
                             <table class="table table-striped table-hover table-bordered table-condensed" id="table">
                                 <caption>Product List</caption> 
                                 <thead>

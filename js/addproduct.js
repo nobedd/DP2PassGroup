@@ -94,17 +94,31 @@ buttonDeleteCategory.addEventListener("click", function(){
     // console.log(selectedDeleteText)
     //delete from the database:
     db.collection("Categories").doc(selectedDeleteID).delete().then(function() {
-        console.log("Category successfully deleted!");
+        console.log("Category"+ selectedDeleteText+"successfully deleted!");
         populateSelectDropdownCategory();//repopulate the list
+
+        var batch = db.batch();
+        var allmatching = db.collection("SalesDetails").where('ProductCategory','==',selectedDeleteText);
+        batch.update(allmatching, {"ProductCategory": "NIL"});//update the rest of the docs
+
     }).catch(function(error) {
         console.error("Error removing document: ", error);
     });
 
+<<<<<<< HEAD
+    // db.collection("SalesDetails").where('ProductCategory','==',selectedDeleteText)
+    // Update the population of 'SF'
+=======
     //Update all products that have that category into NIL
     db.collection("Products")
+>>>>>>> master
 
 });
 
+<<<<<<< HEAD
+});
+
+=======
 // Below is just to display the table
 // var productIDs = [];
 // db.collection("Products")
@@ -122,5 +136,6 @@ buttonDeleteCategory.addEventListener("click", function(){
 //     })
 //     $('#table').append(content);
 // })
+>>>>>>> master
 
 

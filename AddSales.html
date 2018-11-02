@@ -27,7 +27,8 @@
                     <li class="nav-item"><a class="nav-link active text-black" href="AddSales.html">Add New Sales</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="DisplayRecord.html">Manage Sales Record</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="AddProduct.html">Add New Product</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="Generate_Report.html">Generate Report & Analystic</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="Generate_Report.html">Generate Report</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="Generate_Forecast.html">Generate Analytics</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="inventoryMain.html">Manage Inventory</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="login.html">Login_Page</a></li>
                 </ul>
@@ -37,13 +38,13 @@
             <div class="col-8 bg-white pt-3 text-black">
                 <div class="tab-content">
                     <div class="tab-pane container active" id="home">
-                        <h1>SALES REPORTING AND PREDICITON SYSTEM</h1>
-                        <p>LOGIN FOR GAY</p>    
+                        <h1>SALES REPORTING AND PREDICITON SYSTEM</h1>  
                     
                         <!--Add Sales control-->
                         <form id="addSalesForm" onsubmit="return false">
                             <div class="form-group">
                                 <h1>Add Sales Details</h1>
+                                <input type="date" class="date" id="salesDate"/>
                                 <table class="table table-bordered" id="dynamic_SalesDetailsField">
                                     <thead>
                                         <tr>

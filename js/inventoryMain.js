@@ -14,7 +14,7 @@ db.collection("Products")
             content += '<td>' + doc.data().Category + '</td>';
             content += '<td>' + doc.data().Raw_Price + '</td>';
             content += '<td>' + doc.data().Sales_Price + '</td>';
-            content += '<td>' + '<Button class="editProduct">Edit</Button><Button class="deleteProduct">Delete</Button>' + '</td>';
+            content += '<td>' + '<Button class="editProduct btn btn-outline-dark">Edit</Button><Button class="deleteProduct btn btn-outline-danger">Delete</Button>' + '</td>';
             content += '</tr>';
             IDcounterForEachProduct++;
     });

@@ -105,20 +105,10 @@ buttonDeleteCategory.addEventListener("click", function(){
         console.error("Error removing document: ", error);
     });
 
-<<<<<<< HEAD
-    // db.collection("SalesDetails").where('ProductCategory','==',selectedDeleteText)
-    // Update the population of 'SF'
-=======
     //Update all products that have that category into NIL
-    db.collection("Products")
->>>>>>> master
 
 });
 
-<<<<<<< HEAD
-});
-
-=======
 // Below is just to display the table
 // var productIDs = [];
 // db.collection("Products")
@@ -136,6 +126,5 @@ buttonDeleteCategory.addEventListener("click", function(){
 //     })
 //     $('#table').append(content);
 // })
->>>>>>> master
 
 

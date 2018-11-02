@@ -84,7 +84,9 @@ $(document).ready(function(){
         var CurrentDropdownSelect = "";
         var SaveSalesDetailsID = [];
         var SaveDetails = [];
-        var SaveDate = new Date();
+        //Delete this afterwards and uncomment the bottom one
+        var SaveDate = new Date($("#salesDate").val());
+        //var SaveDate = new Date();
 
         var rowID = 0;
         for(rowID = 0; rowID < formTableRowCount+1; rowID++){ 

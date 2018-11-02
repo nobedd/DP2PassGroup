@@ -46,7 +46,7 @@ $(document).ready(function(){
         content += '<td class="onChangeUpdatePrice"><input type="number" id="inputDetailsQuantity' + i + '" class="form-control" placeholder="Enter quantity" min="1" required /></td>';
         content += '<td class="unitPrice" id="unitPrice' + i + '"></td>';
         content += '<td class="totalUnitPrice" id="totalUnitPrice' + i + '"></td>';
-        content += '<td><button id="remove" class="btn btn-danger remove">Remove</button></td></tr>';
+        content += '<td><button id="remove" class="btn btn-outline-danger remove">Remove</button></td></tr>';
         $('#dynamic_SalesDetailsField').append(content);
         populateSelectDropdownWithProducts(i);
         

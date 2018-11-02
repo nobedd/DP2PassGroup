@@ -16,7 +16,7 @@ db.collection("SalesRecord")
             content += '<td>' + doc.id + '</td>';
             content += '<td>' + doc.data().Date.toDate() + '</td>';
             content += '<td>' + doc.data().TotalPrice.toFixed(2) + '</td>';
-            content += '<td>' + '<Button class="deleteRecord">Delete</Button>' + '</td>';
+            content += '<td>' + '<Button class="deleteRecord btn btn-outline-danger">Delete</Button>' + '</td>';
             content += '</tr>';
             IDcounterForEachRecord++;
     });

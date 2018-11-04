@@ -20,22 +20,25 @@ db.collection("Products")
     });
 
     $(document).on("click", ".deleteProduct", function(){
-        console.log("deleted button clicked");//works
-        var getrowIndex = $(this).closest('tr').attr('id');
-        console.log(getrowIndex);//works
-        var getPID = productIDarray[getrowIndex];
-        console.log(getPID);//works
-        $(this).closest('tr').remove();
+        if (confirm("Proceed with Delete: click 'OK'\n")) {
+            console.log("deleted button clicked");//works
+            var getrowIndex = $(this).closest('tr').attr('id');
+            console.log(getrowIndex);//works
+            var getPID = productIDarray[getrowIndex];
+            console.log(getPID);//works
+            $(this).closest('tr').remove();
 
-        //now i have to delete the document with getPID from the database
-        db.collection("Products").doc(getPID).delete().then(function() {
-            console.log("Document successfully deleted!");
-            
-        }).catch(function(error) {
-            console.error("Error removing document: ", error);
-        });
-        //then triger a function that will delete the entire <tbody> and then reload it
-
+            //now i have to delete the document with getPID from the database
+            db.collection("Products").doc(getPID).delete().then(function() {
+                console.log("Document successfully deleted!");
+                
+            }).catch(function(error) {
+                console.error("Error removing document: ", error);
+            });
+            //then triger a function that will delete the entire <tbody> and then reload it
+        } else {
+            // Do nothing!
+        }
     })
     $('#table').append(content);
 

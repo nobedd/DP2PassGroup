@@ -22,6 +22,7 @@ db.collection("SalesRecord")
     });
 
     $(document).on("click", ".deleteRecord", function(){
+    if (confirm("Proceed to Delete: click OK")) {
         console.log("deleted button clicked");//works
         var getrowIndex = $(this).closest('tr').attr('id');
         console.log(getrowIndex);//works
@@ -52,11 +53,11 @@ db.collection("SalesRecord")
                 console.error("Error removing document: ", error);
             });
         })
-
-
-
-        //then triger a function that will delete the entire <tbody> and then reload it
-
+        
+    } else {
+        // Do nothing
+    }
     })
+    //then triger a function that will delete the entire <tbody> and then reload it
     $('#tableRecord').append(content);
 })

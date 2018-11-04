@@ -39,6 +39,7 @@ db.collection("Products").doc(ProductID)
 
 //ON "SAVE CHANGES" click, update the database with current 
 $(document).on("click","#saveChangeButton", function(){
+if (confirm("Save Changes?")) {
     var newName = document.getElementById("productName").value;
     var newRawPrice = document.getElementById("productRawPrice").value;
     var newSalePrice = document.getElementById("productPrice").value;
@@ -61,6 +62,9 @@ $(document).on("click","#saveChangeButton", function(){
     .catch(function(error){
         alert("Pname could not be updated", error);
     });
+} else {
+    // Do nothing!
+}
 })//END OF FUNCTION
 
 // this button will simple go back to inventoryMain
@@ -70,13 +74,16 @@ $(document).on("click","#discardChanges", function(){
 
 // this button will delete the item and go back to inventoryMain
 $(document).on("click","#deleteUnderEdit", function(){
-    db.collection("Products").doc(ProductID).delete().then(function() {
-        alert("Item succesfully deleted")
-        window.location.href ="inventoryMain.html";
-    }).catch(function(error) {
-        console.error("Error removing document: ", error);
-    });
-    
+    if (confirm("Delete Product?\nClick OK to proceed")) {
+        db.collection("Products").doc(ProductID).delete().then(function() {
+            alert("Item succesfully deleted")
+            window.location.href ="inventoryMain.html";
+        }).catch(function(error) {
+            console.error("Error removing document: ", error);
+        });
+    } else {
+        // Do nothing!
+    }
 })
 
 // This button is for testing purpose

@@ -81,6 +81,7 @@ $(document).ready(function(){
 
     //onSubmit function
     $("#addSalesForm").submit(function(event){
+    if (confirm("Save this Sales Record to database?")) {
         var CurrentDropdownSelect = "";
         var SaveSalesDetailsID = [];
         var SaveDetails = [];
@@ -135,6 +136,10 @@ $(document).ready(function(){
             });   
 
         });   
+
+    } else {
+        alert("nothing submitted");
+    }
     });
 
 })

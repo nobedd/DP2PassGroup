@@ -27,24 +27,28 @@
 
     //Button to Save the products
     saveProductButton.addEventListener("click", function(){
-        const SaveProductName = inputProductName.value;
-        const SaveProductPrice = inputProductPrice.value;
-        const SaveProductRawPrice = inputProductRawPrice.value;
-        var selectedCategory = $("#dropdownCategory option:selected").text()
-
-        db.collection("Products").add({
-            PName: SaveProductName,
-            Sales_Price: SaveProductPrice,
-            Raw_Price: SaveProductRawPrice,
-            Category: selectedCategory,
-            archive: false
-        })
-        .then(function(docRef){
-            console.log("Product saved!", docRef.id);
-        })
-        .catch(function(error){
-            console.log("Got an error: ", error);
-        }); 
+        if (confirm('Are you sure you want to save this thing into the database?')) {
+            const SaveProductName = inputProductName.value;
+            const SaveProductPrice = inputProductPrice.value;
+            const SaveProductRawPrice = inputProductRawPrice.value;
+            var selectedCategory = $("#dropdownCategory option:selected").text()
+    
+            db.collection("Products").add({
+                PName: SaveProductName,
+                Sales_Price: SaveProductPrice,
+                Raw_Price: SaveProductRawPrice,
+                Category: selectedCategory,
+                archive: false
+            })
+            .then(function(docRef){
+                console.log("Product saved!", docRef.id);
+            })
+            .catch(function(error){
+                console.log("Got an error: ", error);
+            }); 
+        } else {
+            alert("Nothing changed");
+        }
     });
 
     const inputCategoryName = document.querySelector("#categoryName")
@@ -87,24 +91,27 @@ $("#categoryDeleteDrop").change(function(){
 
 //Delete category functionality
 buttonDeleteCategory.addEventListener("click", function(){
-//WQxMI5w2TVYh9xXP0ivH
-    var selectedDeleteID = $("#categoryDeleteDrop option:selected").val()
-    var selectedDeleteText = $("#categoryDeleteDrop option:selected").text()
-    // console.log(selectedDeleteID)
-    // console.log(selectedDeleteText)
-    //delete from the database:
-    db.collection("Categories").doc(selectedDeleteID).delete().then(function() {
-        console.log("Category"+ selectedDeleteText+"successfully deleted!");
-        populateSelectDropdownCategory();//repopulate the list
-
-        var batch = db.batch();
-        var allmatching = db.collection("SalesDetails").where('ProductCategory','==',selectedDeleteText);
-        batch.update(allmatching, {"ProductCategory": "NIL"});//update the rest of the docs
-
-    }).catch(function(error) {
-        console.error("Error removing document: ", error);
-    });
-
+    if (confirm('Are you sure you want to save this thing into the database?')) {
+        var selectedDeleteID = $("#categoryDeleteDrop option:selected").val()
+        var selectedDeleteText = $("#categoryDeleteDrop option:selected").text()
+        // console.log(selectedDeleteID)
+        // console.log(selectedDeleteText)
+        //delete from the database:
+        db.collection("Categories").doc(selectedDeleteID).delete().then(function() {
+            console.log("Category"+ selectedDeleteText+"successfully deleted!");
+            populateSelectDropdownCategory();//repopulate the list
+    
+            var batch = db.batch();
+            var allmatching = db.collection("SalesDetails").where('ProductCategory','==',selectedDeleteText);
+            batch.update(allmatching, {"ProductCategory": "NIL"});//update the rest of the docs
+    
+        }).catch(function(error) {
+            console.error("Error removing document: ", error);
+        });
+    
+    } else {
+        alert("nothing done");
+    }
     //Update all products that have that category into NIL
 
 });

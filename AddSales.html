@@ -34,52 +34,46 @@
                 </ul>
             </nav>
 
-            <!--Login-->
-            <div class="col-8 bg-white pt-3 text-black">
-                <div class="tab-content">
-                    <div class="tab-pane container active" id="home">   
-                    
-                        <!--Add Sales control-->
-                        <form id="addSalesForm" onsubmit="return false">
-                            <div class="form-group">
-                                <h1>Add Sales Details</h1>
-                                <input type="date" class="date" id="salesDate"/>
-                                <table class="table table-bordered" id="dynamic_SalesDetailsField">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Select Product</th>
-                                            <th scope="col">Enter Quantity</th>
-                                            <th scope="col">Unit Price</th>
-                                            <th scope="col">Total Unit Price</th>
-                                            <th scope="col">Add</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr id=0>
-                                            <td class="onChangeUpdatePrice">
-                                                <select id="dropdownDetails0" class="custom-select" required>
-                                                    <option value="">Select a product to add</option>
-                                                </select>
-                                            </td> 
-                                            <td class="onChangeUpdatePrice"><input type="number" id="inputDetailsQuantity0" class="form-control" placeholder="Enter quantity" min="1" required /></td>   
-                                            <td class="unitPrice" id="unitPrice0"></td>
-                                            <td class="totalUnitPrice" id="totalUnitPrice0"></td>
-                                            <td><button id="add" class="btn btn-outline-success">Add</button></td>     
-                                        </tr>
-                                    </tbody>
-                                    <tfoot>
-                                        <td></td>
-                                        <td></td>
-                                        <td>Total Price</td>
-                                        <td id="totalPrice"></td>
-                                        <td></td>
-                                    </tfoot>
-                                </table>      
-                            </div>
-                            <button id="saveSales" type="submit" class="btn btn-outline-primary">Save Sales</button>
-                        </form>
+            <div class="col-8 bg-white pt-3 text-black container-fluid">                    
+                <!--Add Sales control-->
+                <form id="addSalesForm" onsubmit="return false">
+                    <div class="form-group">
+                        <h1>Add Sales Details</h1>
+                        <input type="date" class="date" id="salesDate"/>
+                        <table class="table table-bordered" id="dynamic_SalesDetailsField">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Select Product</th>
+                                    <th scope="col">Enter Quantity</th>
+                                    <th scope="col">Unit Price</th>
+                                    <th scope="col">Total Unit Price</th>
+                                    <th scope="col">Add</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id=0>
+                                    <td class="onChangeUpdatePrice">
+                                        <select id="dropdownDetails0" class="custom-select" required>
+                                            <option value="">Select a product to add</option>
+                                        </select>
+                                    </td> 
+                                    <td class="onChangeUpdatePrice"><input type="number" id="inputDetailsQuantity0" class="form-control" placeholder="Enter quantity" min="1" required /></td>   
+                                    <td class="unitPrice" id="unitPrice0"></td>
+                                    <td class="totalUnitPrice" id="totalUnitPrice0"></td>
+                                    <td><button id="add" class="btn btn-outline-success">Add</button></td>     
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <td></td>
+                                <td></td>
+                                <td>Total Price</td>
+                                <td id="totalPrice"></td>
+                                <td></td>
+                            </tfoot>
+                        </table>      
                     </div>
-                </div>
+                    <button id="saveSales" type="submit" class="btn btn-outline-primary">Save Sales</button>
+                </form>
             </div>
         </div>
     </div>

@@ -1,5 +1,27 @@
 var db = firebase.firestore();
 var ProductID = localStorage.getItem("PID");
+//get the name of the product and log it to console
+var oldProduct;
+var oldPname;
+db.collection("Products").doc(ProductID).get()
+.then(function(doc){
+    oldProduct = doc.data();
+    oldPname = oldProduct.PName;
+    console.log(oldPname);
+
+    //function below is just for testing purpose
+    // db.collection("SalesDetails").where("ProductName", "==", oldPname)
+    // .get()
+    // .then(function(querySnapshot) {
+    //     querySnapshot.forEach(function(doc) {
+    //         console.log(doc.id, " => ", doc.data());
+    //     });
+    // })
+    // .catch(function(error) {
+    //     console.log("Error getting documents: ", error);
+    // });
+})
+
 var SelectedProduct = {};
 
 //Populate select dropdown with products function
@@ -55,13 +77,32 @@ if (confirm("Save Changes?")) {
         Sales_Price: newSalePrice,
         Category: newSelectedCategory
     })
-    .then(function(doc){
+    .then(function(){
         alert("Updated successfully")
         window.location.href ="inventoryMain.html";
     })
     .catch(function(error){
         alert("Pname could not be updated", error);
     });
+
+    //update the collection in SalesDetails table
+    db.collection("SalesDetails").where("ProductName", "==", oldPname)
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            var productRef = db.collection("SalesDetails").doc(doc.id);
+
+            return productRef.update({
+                ProductName: ''+newName+'',
+                ProductCategory: newSelectedCategory
+            });
+        });
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+    });
+
 } else {
     // Do nothing!
 }

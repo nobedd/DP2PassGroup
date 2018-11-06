@@ -2,24 +2,34 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>HomePage</title>
+        <title>Login Page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-firestore.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
-    <body>
-        <div class="topnav">
+<body>
+    <div class="container">
+    <div class="topnav">
             <a class="active" href="#home">Home</a>
-            <a href="AddProduct.html">AddProduct</a>
-            <a href="AddSales.html">AddSales</a>
-            <a href="DisplayRecord.html">DisplayRecord</a>
+            <a href="AddSales.html">Add Sales</a>
+    </div>
+    <div class="jumbotron"><h1 class="text-center">SRePS</h1></div>
+        <div class="form-group">
+            <label for="email">Email address:</label>
+            <input type="email" class="form-control" id="email">
         </div>
-        
-        <h1>SALES REPORTING AND PREDICITON SYSTEM</h1>
-        <p>LOGIN FOR GAY</p>
-        
-        <script src="js/app.js"></script>
-        <!--<script src="js/angular.min.js"></script>
-        <script src="js/addproduct.js"></script>-->
-    </body>
-</html> 
+        <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" class="form-control" id="pwd">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </div>
+</body>
+</html>

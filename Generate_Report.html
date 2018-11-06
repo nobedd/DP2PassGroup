@@ -36,82 +36,77 @@
                 </ul>
 			</nav>
 
-            <div class="col-8 bg-white pt-3 text-black">
-                <div class="tab-content">
-                    <div class="tab-pane container active" id="home">
-                        <h1>SALES REPORTING AND PREDICITON SYSTEM</h1> 
-                        
-                        <form onsubmit="return false">
-                            <h2>Genarate Reports</h2>
-                            <div class="form-row ml-0">
-                                <p>Choose period:</p>
-                                <div class="custom-control custom-radio custom-control-inline ml-2">
-                                    <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodDaily"/>
-                                    <label class="custom-control-label" for="radioPeriodDaily">Daily</label>
-                                </div>
+            <div class="col-8 bg-white pt-3 text-black container-fluid">
+                <h1>SALES REPORTING AND PREDICITON SYSTEM</h1> 
+                
+                <form onsubmit="return false">
+                    <h2>Genarate Reports</h2>
+                    <div class="form-row ml-0">
+                        <p>Choose period:</p>
+                        <div class="custom-control custom-radio custom-control-inline ml-2">
+                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodDaily"/>
+                            <label class="custom-control-label" for="radioPeriodDaily">Daily</label>
+                        </div>
 
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodWeekly"/>
-                                    <label class="custom-control-label" for="radioPeriodWeekly">Weekly</label>
-                                </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodWeekly"/>
+                            <label class="custom-control-label" for="radioPeriodWeekly">Weekly</label>
+                        </div>
 
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodMonthly"/>
-                                    <label class="custom-control-label" for="radioPeriodMonthly">Monthly</label>
-                                </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodMonthly"/>
+                            <label class="custom-control-label" for="radioPeriodMonthly">Monthly</label>
+                        </div>
 
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodYearly"/>
-                                    <label class="custom-control-label" for="radioPeriodYearly">Yearly</label>
-                                </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodYearly"/>
+                            <label class="custom-control-label" for="radioPeriodYearly">Yearly</label>
+                        </div>
 
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodCustom"/>
-                                    <label class="custom-control-label" for="radioPeriodCustom">Custom</label>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="col-6">
-                                    <label for="startDate">Start Date:</label>
-                                    <input type="date" class="date" id="startDate"/>
-                                </div>
-                                
-                                <div class="col-6">
-                                    <label for="endDate">End Date:</label>
-                                    <input type="date" class="date" id="endDate" disabled/>
-                                </div>
-                            </div>
-                        </form>
-                        <!-- remove this button and enable the commented button above after the form above is done -->
-                        <button id="generateTableButton" class="btn btn-outline-primary">Genarate Table</button>
-                        <button id="exportTableButton" class="btn btn-outline-primary">Export Table</button>
-                        <br>
-                        <br>
-
-                        <table class="table table-bordered" id="table">
-                            <thead>
-                                <th>Product name</th>
-                                <th>Category</th>
-                                <th>Unit Price</th>
-                                <th>Quantity Sold</th>
-                                <th>Revenue</th>
-                                <th>Gross Margin</th>
-
-                            </thead>
-                            <tbody id="tbodyID"></tbody>
-                            <tfoot>
-                                <td>Report Summary</td>
-                                <td></td>
-                                <td></td>
-                                <td id="totalQuantity"></td>
-                                <td id="totalRevenue"></td>
-                                <td id="totalGrossMargin"></td>
-                            </tfoot>
-                        </table>
-
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodCustom"/>
+                            <label class="custom-control-label" for="radioPeriodCustom">Custom</label>
+                        </div>
                     </div>
-                </div>
+
+                    <div class="form-row">
+                        <div class="col-6">
+                            <label for="startDate">Start Date:</label>
+                            <input type="date" class="date" id="startDate"/>
+                        </div>
+                        
+                        <div class="col-6">
+                            <label for="endDate">End Date:</label>
+                            <input type="date" class="date" id="endDate" disabled/>
+                        </div>
+                    </div>
+                </form>
+                <!-- remove this button and enable the commented button above after the form above is done -->
+                <button id="generateTableButton" class="btn btn-outline-primary">Genarate Table</button>
+                <button id="exportTableButton" class="btn btn-outline-primary">Export Table</button>
+                <br>
+                <br>
+
+                <table class="table table-bordered" id="table">
+                    <thead>
+                        <th>Product name</th>
+                        <th>Category</th>
+                        <th>Unit Price</th>
+                        <th>Quantity Sold</th>
+                        <th>Revenue</th>
+                        <th>Gross Margin</th>
+
+                    </thead>
+                    <tbody id="tbodyID"></tbody>
+                    <tfoot>
+                        <td>Report Summary</td>
+                        <td></td>
+                        <td></td>
+                        <td id="totalQuantity"></td>
+                        <td id="totalRevenue"></td>
+                        <td id="totalGrossMargin"></td>
+                    </tfoot>
+                </table>
             </div>
         </div>
     </div>

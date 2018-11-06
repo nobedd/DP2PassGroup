@@ -1,5 +1,27 @@
 var db = firebase.firestore();
 var ProductID = localStorage.getItem("PID");
+//get the name of the product and log it to console
+var oldProduct;
+var oldPname;
+db.collection("Products").doc(ProductID).get()
+.then(function(doc){
+    oldProduct = doc.data();
+    oldPname = oldProduct.PName;
+    console.log(oldPname);
+
+    //function below is just for testing purpose
+    // db.collection("SalesDetails").where("ProductName", "==", oldPname)
+    // .get()
+    // .then(function(querySnapshot) {
+    //     querySnapshot.forEach(function(doc) {
+    //         console.log(doc.id, " => ", doc.data());
+    //     });
+    // })
+    // .catch(function(error) {
+    //     console.log("Error getting documents: ", error);
+    // });
+})
+
 var SelectedProduct = {};
 
 //Populate select dropdown with products function
@@ -38,8 +60,7 @@ db.collection("Products").doc(ProductID)
 //END OF :Getting value from the database and setting it into the input fields 
 
 //ON "SAVE CHANGES" click, update the database with current 
-$(document).on("click","#saveChangeButton", function(){
-if (confirm("Save Changes?")) {
+$(document).on("click","#SaveButton", function(){
     var newName = document.getElementById("productName").value;
     var newRawPrice = document.getElementById("productRawPrice").value;
     var newSalePrice = document.getElementById("productPrice").value;
@@ -56,15 +77,11 @@ if (confirm("Save Changes?")) {
         Category: newSelectedCategory
     })
     .then(function(doc){
-        alert("Updated successfully")
         window.location.href ="inventoryMain.html";
     })
     .catch(function(error){
         alert("Pname could not be updated", error);
     });
-} else {
-    // Do nothing!
-}
 })//END OF FUNCTION
 
 // this button will simple go back to inventoryMain

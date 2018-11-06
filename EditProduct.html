@@ -30,58 +30,58 @@
                     <li class="nav-item"><a class="nav-link text-white" href="AddSales.html">Add New Sales</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="DisplayRecord.html">Manage Sales Record</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="AddProduct.html">Add New Product</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="Generate_Report.html">Generate Report & Analystic</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="Generate_Report.html">Generate Report</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="Generate_Forecast.html">Generate Analytics</a></li>
                     <li class="nav-item"><a class="nav-link active text-black" href="inventoryMain.html">Manage Inventory</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="login.html">Login_Page</a></li>
                 </ul>
             </nav>
 
             <!--Login-->
-            <div class="col-8 bg-white pt-3 text-black">
-                <div class="tab-content">
-                    <div class="tab-pane container active" id="home">
-                        <h1>SALES REPORTING AND PREDICITON SYSTEM</h1>
-                        
-                        <br>
+            <div class="col-8 bg-white pt-3 text-black container-fluid">
+                <h1>SALES REPORTING AND PREDICITON SYSTEM</h1>
+                
+                <br>
 
-                        <!-- <button id="showPID">Show PID</button> -->
-                        <!-- <p id="textID">Error: productid not found</p> -->
-                        <form>
-                            <h1 id="addProduct">Edit product</h1>
-                            <h2></h2>
-                            <div class="form-group row">
-                                <label for="productName">Product Name</label>
-                                <input type="text" class="form-control col-md-12" id="productName" />
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="productRawPrice">Product Raw Price</label>
-                                <input type="number" class="form-control col-md-4" id="productRawPrice" />
-                                <label for="productPrice">Product Price</label>
-                                <input type="number" class="form-control col-md-4" id="productPrice" />
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="dropdownCategory">Product Category</label>
-                                <!-- <input type="text" class="form-control col-md-12" id="productCategory" disabled /> -->
-                                <select id="dropdownCategory" class="custom-select" required>
-                                    <option value="">Select a product to add</option>
-                                </select>
-                            </div>
-                        </form>
-                        <button id="saveChangeButton" class="btn btn-outline-primary">Save Changes</button>
-                        <button id="discardChanges" class="btn btn-outline-dark">Discard Changes</button>
-                        <button id="deleteUnderEdit" class="btn btn-outline-danger">Delete Item</button>
+                <!-- <button id="showPID">Show PID</button> -->
+                <!-- <p id="textID">Error: productid not found</p> -->
+                <form>
+                    <h1 id="addProduct">Edit product</h1>
+                    <h2></h2>
+                    <div class="form-group row ml-0">
+                        <label for="productName">Product Name</label>
+                        <input type="text" class="form-control col-md-12" id="productName" />
                     </div>
-                </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col"><label for="productRawPrice">Product Raw Price</label></div>
+                            <div class="col"><label for="productPrice">Product Sales Price</label></div>
+                        </div>
+                        <div class="row">
+                            <div class="col"><input type="number" class="form-control col-md-4" id="productRawPrice" /></div>
+                            <div class="col"><input type="number" class="form-control col-md-4" id="productPrice" /></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row ml-0">
+                        <label for="dropdownCategory">Product Category</label>
+                        <!-- <input type="text" class="form-control col-md-12" id="productCategory" disabled /> -->
+                        <select id="dropdownCategory" class="custom-select" required>
+                            <option value="">Select a product to add</option>
+                        </select>
+                    </div>
+                </form>
+                <button id="saveChangeButton" class="btn btn-outline-success">Save Changes</button>
+                <button id="discardChanges" class="btn btn-outline-dark">Discard Changes</button>
+                <button id="deleteUnderEdit" class="btn btn-outline-danger">Delete Item</button>
             </div>
         </div>
     </div>
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="js/app.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>    <script src="js/app.js"></script>
     <script src="js/editproduct.js"></script>
 </body>
 

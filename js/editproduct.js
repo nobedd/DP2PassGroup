@@ -82,6 +82,24 @@ $(document).on("click","#SaveButton", function(){
     .catch(function(error){
         alert("Pname could not be updated", error);
     });
+
+    //update the collection in SalesDetails table
+    db.collection("SalesDetails").where("ProductName", "==", oldPname)
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            var productRef = db.collection("SalesDetails").doc(doc.id);
+
+            return productRef.update({
+                ProductName: ''+newName+'',
+                ProductCategory: newSelectedCategory
+            });
+        });
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+    });
 })//END OF FUNCTION
 
 // this button will simple go back to inventoryMain

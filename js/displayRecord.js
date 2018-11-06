@@ -1,7 +1,14 @@
 var db = firebase.firestore();
+var d = new Date().toDateString()
+document.getElementById("startDate").value = "2010-01-01";
+document.getElementById("endDate").valueAsDate = new Date();
 
-//This function generates the list of products and put into a table form
-db.collection("SalesRecord")
+function generateTable(){
+    var startDate = new Date($("#startDate").val());
+    var endDate = new Date($("#endDate").val());
+// This function generates the list of products and put into a table form
+$("#tbodyID").empty();
+db.collection("SalesRecord").where("Date", ">=", startDate).where("Date", "<=", endDate).orderBy("Date")
 .get()
 .then(function(querySnapshot){
         var SalesRecordIDarray = {};
@@ -13,8 +20,10 @@ db.collection("SalesRecord")
             // var date = Date(doc.data().Date.toDate());
             // date = date(yy mm dd);
             content += '<tr id="' + IDcounterForEachRecord + '">';
-            content += '<td>' + doc.id + '</td>';
-            content += '<td>' + doc.data().Date.toDate() + '</td>';
+            // content += '<td>' + doc.id + '</td>';
+            content += '<td>' + doc.data().Date.toDate().toDateString() + '</td>';
+            // content += '<td>' + doc.data().Date.toDate().getTime() + '</td>';
+            content += '<td>' + doc.data().Date.toDate().getHours() + 'h: '+ doc.data().Date.toDate().getMinutes() + 'm: '+ doc.data().Date.toDate().getSeconds() + "s" +'</td>';
             content += '<td>' + doc.data().TotalPrice.toFixed(2) + '</td>';
             content += '<td>' + '<Button class="deleteRecord btn btn-outline-danger">Delete</Button>' + '</td>';
             content += '</tr>';
@@ -60,4 +69,9 @@ db.collection("SalesRecord")
     })
     //then triger a function that will delete the entire <tbody> and then reload it
     $('#tableRecord').append(content);
+})//end of db query
+}//end of function generateTable
+
+$(document).on("click", "#searchDate", function(){
+    generateTable();
 })

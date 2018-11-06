@@ -14,7 +14,7 @@ db.collection("Products")
             content += '<td>' + doc.data().Category + '</td>';
             content += '<td>' + doc.data().Raw_Price + '</td>';
             content += '<td>' + doc.data().Sales_Price + '</td>';
-            content += '<td>' + '<Button class="editProduct btn btn-outline-dark">Edit</Button><Button class="deleteProduct btn btn-outline-danger">Delete</Button>' + '</td>';
+            content += '<td>' + "<Button class='editProduct btn btn-outline-dark' data-toggle='modal' data-target='#saveChange'>Edit</Button><Button class='deleteProduct btn btn-outline-danger'>Delete</Button>" + '</td>';
             content += '</tr>';
             IDcounterForEachProduct++;
     });
@@ -42,11 +42,11 @@ db.collection("Products")
     })
     $('#table').append(content);
 
-    $(document).on("click",".editProduct", function(){
-        console.log("Edit button pressed");
-        var getrowIndex2 = $(this).closest('tr').attr('id');
-        var getPID2 = productIDarray[getrowIndex2];
-        localStorage.setItem("PID", getPID2);
-        window.location.href ="EditProduct.html";
-    })
+    // $(document).on("click",".editProduct", function(){
+    //     console.log("Edit button pressed");
+    //     var getrowIndex2 = $(this).closest('tr').attr('id');
+    //     var getPID2 = productIDarray[getrowIndex2];
+    //     localStorage.setItem("PID", getPID2);
+    //     window.location.href ="EditProduct.html";
+    // })
 })

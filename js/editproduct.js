@@ -60,8 +60,7 @@ db.collection("Products").doc(ProductID)
 //END OF :Getting value from the database and setting it into the input fields 
 
 //ON "SAVE CHANGES" click, update the database with current 
-$(document).on("click","#saveChangeButton", function(){
-if (confirm("Save Changes?")) {
+$(document).on("click","#SaveButton", function(){
     var newName = document.getElementById("productName").value;
     var newRawPrice = document.getElementById("productRawPrice").value;
     var newSalePrice = document.getElementById("productPrice").value;
@@ -77,35 +76,12 @@ if (confirm("Save Changes?")) {
         Sales_Price: newSalePrice,
         Category: newSelectedCategory
     })
-    .then(function(){
-        alert("Updated successfully")
+    .then(function(doc){
         window.location.href ="inventoryMain.html";
     })
     .catch(function(error){
         alert("Pname could not be updated", error);
     });
-
-    //update the collection in SalesDetails table
-    db.collection("SalesDetails").where("ProductName", "==", oldPname)
-    .get()
-    .then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-            // doc.data() is never undefined for query doc snapshots
-            var productRef = db.collection("SalesDetails").doc(doc.id);
-
-            return productRef.update({
-                ProductName: ''+newName+'',
-                ProductCategory: newSelectedCategory
-            });
-        });
-    })
-    .catch(function(error) {
-        console.log("Error getting documents: ", error);
-    });
-
-} else {
-    // Do nothing!
-}
 })//END OF FUNCTION
 
 // this button will simple go back to inventoryMain

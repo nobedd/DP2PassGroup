@@ -41,12 +41,96 @@ db.collection("Products")
         }
     })
     $('#table').append(content);
+    
+    //Populate select dropdown with products function
+    function populateSelectDropdownCategory(){
+        db.collection("Categories")
+        .get()
+        .then(function(querySnapshot){     
+            var content = "";
+            var value = 1;
+            querySnapshot.forEach (function(doc){
+                content += "<option value='" + value + "'>" + doc.data().Category + "</option>";
+                value++;
+            })
+            $('#dropdownCategory').empty();
+            $('#dropdownCategory').append(content);
+        })
+    }populateSelectDropdownCategory();
+var ProductID;
+$(document).on("click",".editProduct", function(){
+    var getrowIndex2 = $(this).closest('tr').attr('id');
+    ProductID = productIDarray[getrowIndex2];//assign the productID into getPID2
+    //saves the name of the product before update
+    db.collection("Products").doc(ProductID).get()
+    .then(function(doc){
+        oldProduct = doc.data();
+        oldPname = oldProduct.PName;
+        console.log(oldPname);
+    })
+    
+    var SelectedProduct = {};
+      
+    //Getting value from the database and setting it into the input fields 
+    db.collection("Products").doc(ProductID)
+        .get()
+        .then(function(doc){
+            //Populate the first row in view
+            SelectedProduct = doc.data();
+            document.getElementById("productName").value = SelectedProduct.PName;
+            document.getElementById("productRawPrice").value = SelectedProduct.Raw_Price;
+            document.getElementById("productPrice").value = SelectedProduct.Sales_Price;
+            $('#dropdownCategory option').map(function () { //function to match the category
+                if ($(this).text() == SelectedProduct.Category) return this;
+            }).attr('selected', 'selected'); 
+    
+        })
+        .catch(function(error){
+            alert("Hey ERROR", error);
+    });
+    //END OF :Getting value from the database and setting it into the input fields 
+})
 
-    // $(document).on("click",".editProduct", function(){
-    //     console.log("Edit button pressed");
-    //     var getrowIndex2 = $(this).closest('tr').attr('id');
-    //     var getPID2 = productIDarray[getrowIndex2];
-    //     localStorage.setItem("PID", getPID2);
-    //     window.location.href ="EditProduct.html";
-    // })
+$(document).on("click","#SaveButton", function(){
+        var newName = document.getElementById("productName").value;
+        var newRawPrice = document.getElementById("productRawPrice").value;
+        var newSalePrice = document.getElementById("productPrice").value;
+        //getting category text takes 2 lines
+        var indexChosen=document.getElementById("dropdownCategory");
+        var newSelectedCategory = indexChosen.options[indexChosen.selectedIndex].text;
+    
+        //query that updates based on the variables above
+        db.collection("Products").doc(ProductID)
+        .update({
+            PName:''+newName+'',
+            Raw_Price: newRawPrice,
+            Sales_Price: newSalePrice,
+            Category: newSelectedCategory
+        })
+        .then(function(){
+            window.location.href ="inventoryMain.html";//reloads the page after saving
+        })
+        .catch(function(error){
+            alert("Pname could not be updated", error);
+        });
+    
+        //update the collection in SalesDetails table
+        db.collection("SalesDetails").where("ProductName", "==", oldPname)
+        .get()
+        .then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                // doc.data() is never undefined for query doc snapshots
+                var productRef = db.collection("SalesDetails").doc(doc.id);
+    
+                return productRef.update({
+                    ProductName: ''+newName+'',
+                    ProductCategory: newSelectedCategory
+                });
+            });
+        })
+        .catch(function(error) {
+            console.log("Error getting documents: ", error);
+        });
+    })//END OF FUNCTION
+    
 })

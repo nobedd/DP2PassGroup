@@ -37,11 +37,10 @@
                 </ul>
 			</nav>
 
-            <div class="col-8 bg-white pt-3 text-black container-fluid">
-                <h1>SALES REPORTING AND PREDICITON SYSTEM</h1>
+            <div class="col-8 container-fluid">
 
                         <form onsubmit="return false">
-                            <h2>Genarate Analytics</h2>
+                            <h1>Genarate Analytics</h1>
 
                             <div class="form-row ml-0">
                                 <p>Choose period:</p>
@@ -90,9 +89,20 @@
                             </div>
                         </form>
                         <br/>
-                        <canvas id="pieChart" ></canvas>
+                        <!-- <canvas id="pieChart" ></canvas> -->
                         <br/>
-                        <canvas id="barChart" ></canvas>
+                        <div class="row"> 
+                            <div class="col">
+                                <canvas id="pieChartProduct"></canvas>
+                            </div>
+                        </div>
+                        <div class="row"> 
+                            <div class="col">
+                                <canvas id="barChartMonths"></canvas>
+                            </div>
+                        </div>
+                        
+                       
                     </div>
                 </form>
                 <br/>

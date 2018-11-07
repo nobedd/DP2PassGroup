@@ -125,7 +125,8 @@ $(document).ready(function(){
                     db.collection("SalesRecord").add({
                         IDs: SaveSalesDetailsID,
                         TotalPrice: totalPrice,
-                        Date: SaveDate
+                        Date: SaveDate,
+                        DateMonth: moment(SaveDate).format("MMMM")
                     })
                     .then(function(docRef){
                         console.log("SR success!", docRef.id)

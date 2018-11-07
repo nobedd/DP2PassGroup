@@ -5,6 +5,9 @@ $(document).ready(function(){
     var totalPrice;
     var formTableRowCount = 0;
 
+    //set date to today in date input
+    $("#salesDate").val(moment().format('YYYY-MM-DD'));
+    
     //Populate Map for ProductName : SellingPrice
     db.collection("Products").orderBy("PName","asc")
     .get()
@@ -85,10 +88,11 @@ $(document).ready(function(){
         var CurrentDropdownSelect = "";
         var SaveSalesDetailsID = [];
         var SaveDetails = [];
+
         //Delete this afterwards and uncomment the bottom one
         var SaveDate = new Date($("#salesDate").val());
         //var SaveDate = new Date();
-
+        
         var rowID = 0;
         for(rowID = 0; rowID < formTableRowCount+1; rowID++){ 
             CurrentDropdownSelect = $("#dropdownDetails" + rowID +" option:selected").text();
@@ -102,7 +106,7 @@ $(document).ready(function(){
                 });
             }       
         }
-
+        console.log(moment(SaveDate).format("MMMM"));
         SaveDetails.forEach(function(details, index){
             db.collection("SalesDetails").add({
                 ProductName: details.name,
@@ -110,8 +114,8 @@ $(document).ready(function(){
                 Quantity: details.quantity,
                 UnitPrice: details.unitPrice,
                 TotalUnitPrice: details.totalUnitPrice,
-                Date: SaveDate
-
+                Date: SaveDate,
+                DateMonth: moment(SaveDate).format("MMMM")
             })
             .then(function(docRef){
                 console.log("SD success!", docRef.id);

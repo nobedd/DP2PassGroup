@@ -38,10 +38,10 @@ $(document).on("click", ".unselectProduct", function(){
 });
 
 $(document).on("click", "#deleteProduct", function(){
-    $(".checkSelectProduct").click(function(){
-        if($(this).is(":checked")){
-            if (confirm("Proceed with Delete: click 'OK'\n")) {
-                console.log("deleted button clicked");//works
+    if (confirm("Proceed with Delete: click 'OK'\n")) {
+        console.log("deleted button clicked");//works
+            $(".checkSelectProduct").click(function(){
+                if($(this).is(":checked")){
                 var getrowIndex = $(this).closest('tr').attr('id');
                 console.log(getrowIndex);//works
                 var getPID = productIDarray[getrowIndex];
@@ -59,8 +59,8 @@ $(document).on("click", "#deleteProduct", function(){
             } else {
                 // Do nothing!
             } 
-        }
-    });
+        });
+    }
     
 });
 

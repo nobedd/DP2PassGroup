@@ -119,6 +119,11 @@ $(document).ready(function(){
             })
             .then(function(docRef){
                 console.log("SD success!", docRef.id);
+                // pop up alert
+                var contenti = "";
+                contenti += '<div class="alert alert-success alert-dismissible"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Success!</strong> Sales Record: '+docRef.id+' added to database </div>'
+                $('#returnStatus').append(contenti);
+
                 SaveSalesDetailsID.push(docRef.id);
 
                 if(index == SaveDetails.length-1){

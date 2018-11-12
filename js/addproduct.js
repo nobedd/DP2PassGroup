@@ -1,6 +1,5 @@
 //(function(){
     var db = firebase.firestore();
-
     const inputProductName = document.querySelector("#productName");
     const inputProductPrice = document.querySelector("#productPrice");
     const inputProductRawPrice = document.querySelector("#productRawPrice");
@@ -27,6 +26,7 @@
 
     //Button to Save the products
     saveProductButton.addEventListener("click", function(){
+        var contenti = "";
         if (confirm('Are you sure you want to save this thing into the database?')) {
             const SaveProductName = inputProductName.value;
             const SaveProductPrice = inputProductPrice.value;
@@ -41,10 +41,13 @@
                 archive: false
             })
             .then(function(docRef){
-                console.log("Product saved!", docRef.id);
+                console.log("Product saved!", docRef.id);            
+                contenti += '<div class="alert alert-success alert-dismissible"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Success!</strong> Product '+SaveProductName+' added to database </div>'
+                $('#statusbar').append(contenti);
             })
             .catch(function(error){
                 console.log("Got an error: ", error);
+                contenti +='<div class="alert alert-danger alert-dismissible"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong> Something went wrong. The product might not have been saved.</div>'
             }); 
         } else {
             alert("Nothing changed");
@@ -65,6 +68,11 @@
                 console.log("Category saved!", docRef.id);
                 document.getElementById('categoryName').value='';
                 populateSelectDropdownCategory();//repopulate the list
+                
+                var contenti = "";
+                contenti += '<div class="alert alert-success alert-dismissible"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Success!</strong> Product '+SaveCategoryName+' added to database </div>'
+                $('#statusbarCat').append(contenti);
+
             })
             .catch(function(error){
                 console.log("Got and eror: ", error);
@@ -91,28 +99,66 @@ $("#categoryDeleteDrop").change(function(){
 
 //Delete category functionality
 buttonDeleteCategory.addEventListener("click", function(){
-    if (confirm('Are you sure you want to save this thing into the database?')) {
+    if (confirm('Are you sure you want to delete this thing from the database?')) {
         var selectedDeleteID = $("#categoryDeleteDrop option:selected").val()
         var selectedDeleteText = $("#categoryDeleteDrop option:selected").text()
         // console.log(selectedDeleteID)
         // console.log(selectedDeleteText)
         //delete from the database:
-        db.collection("Categories").doc(selectedDeleteID).delete().then(function() {
-            console.log("Category"+ selectedDeleteText+"successfully deleted!");
+        db.collection("Categories").doc(selectedDeleteID).delete()
+        .then(function() {
+            console.log("Category "+ selectedDeleteText+" successfully deleted!");
             populateSelectDropdownCategory();//repopulate the list
-    
-            var batch = db.batch();
-            var allmatching = db.collection("SalesDetails").where('ProductCategory','==',selectedDeleteText);
-            batch.update(allmatching, {"ProductCategory": "NIL"});//update the rest of the docs
-    
+            contentDel='';
+            contentDel += '<div class="alert alert-info alert-dismissible"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Success!</strong> Product '+selectedDeleteText+' removed from database </div>'
+            $('#statusbarCatDel').append(contentDel);
+            //Uncompleted: when category deleted, all products with the category should be nil
+            // var batch = db.batch();
+            // var allmatching = db.collection("SalesDetails").where('ProductCategory','==',selectedDeleteText);
+            // batch.update(allmatching, {"ProductCategory": "NIL"});//update the rest of the docs
+            
+            //Update all products that have that category into NIL
+            db.collection("Products").where("Category", "==", selectedDeleteText)
+            .get()
+            .then(function (querySnapshot) {
+                querySnapshot.forEach(function (doc) {
+                    // doc.data() is never undefined for query doc snapshots
+                    var productRef = db.collection("Products").doc(doc.id);
+                    console.log(productRef);
+                    return productRef.update({
+                        Category: "NIL"
+                    });
+                });
+            })
+            .catch(function (error) {
+                console.log("Error getting documents: ", error);
+            });
+
+            //update the collection in SalesDetails table
+            db.collection("SalesDetails").where("ProductCategory", "==", selectedDeleteText)
+            .get()
+            .then(function (querySnapshot) {
+                querySnapshot.forEach(function (doc) {
+                    // doc.data() is never undefined for query doc snapshots
+                    var productRef = db.collection("SalesDetails").doc(doc.id);
+                    console.log(productRef.ProductName);
+                    return productRef.update({
+                        ProductCategory: "NIL"
+                    });
+                });
+            })
+            .catch(function (error) {
+                console.log("Error getting documents: ", error);
+            });
+        
         }).catch(function(error) {
-            console.error("Error removing document: ", error);
+            console.error("Error: ", error);
         });
     
     } else {
-        alert("nothing done");
+        // do nothing
+        // alert("nothing done");
     }
-    //Update all products that have that category into NIL
 
 });
 

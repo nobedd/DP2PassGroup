@@ -39,14 +39,26 @@
 
             <div class="col-8 bg-white pt-3 text-black container-fluid">
                 <h1> Inventory </h1>
-                <!-- <label for="searchProduct">Search Item: <input type="search" name="searchProduct"></label>
-                <input type="submit" class="btn btn-outline-dark"disabled> -->
+                
+                <div class="row">
+                    <!-- <div class = "col" >
+                        <label for="searchProduct">Search Item: <input type="search" name="searchProduct"></label>
+                        <input type="submit" class="btn btn-outline-dark"disabled>
+                    </div> -->
+                    <div class = "col-md-5" >
+                            <button class="selectProduct btn btn-outline-dark" id = "selectProduct">Select</button>
+                            <button class="unselectProduct btn btn-outline-dark" id = "unselectProduct" style="display:none">CancelSelect</button>
+                            <button class="btn btn-outline-danger" id = "delectProduct" style="display:none">Delete</button>
+                    </div>
+                </div>
+
                 <div class="table-responsive">
                     <table id="table" class="table bordered table-responsive">
                         <!-- <caption>Product List</caption>  -->
                         <thead>
                             <tr class="table-info">
                                 <!-- <th>ID</th> -->
+                                <th></th>
                                 <th>Name</th>
                                 <th>Category</th>
                                 <th>Raw Price</th>

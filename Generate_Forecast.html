@@ -8,36 +8,54 @@
         <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-firestore.js"></script>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">   
 
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">   
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js" integrity="sha256-CutOzxCRucUsn6C6TcEYsauvvYilEniTXldPa6/wu0k=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js" integrity="sha256-oSgtFCCmHWRPQ/JmR4OoZ3Xke1Pw4v50uh6pLcu+fIc=" crossorigin="anonymous"></script>
     </head>
+
+    <!-- BODY -->
     <body>
-	<div class="container-fluid">
-		<div class="row bg-info">
-			<div class="col-12">
-				<nav class="navbar navbar-right navbar-light">
-					<a class="navbar-brand font-weight-bold" href="#">SRePS</a>
-					<button class="btn btn-outline-light" id="LogButton" type="submit">Log In</button>
-				</nav>
-			</div>
-		</div>
-
-		<div class="row">
-			<nav class="col-md-auto pr-0 bg-info">
-                <ul class="nav flex-column nav-tabs bg-info">
-                    <li class="nav-item"><a class="nav-link text-white" href="AddSales.html">Add New Sales</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="DisplayRecord.html">Manage Sales Record</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="AddProduct.html">Add New Product</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="Generate_Report.html">Generate Report</a></li>
-                    <li class="nav-item"><a class="nav-link active text-black" href="Generate_Forecast.html">Generate Analytics</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="inventoryMain.html">Manage Inventory</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="login.html">Login_Page</a></li>
+        <!-- NAV BAR -->
+        <div class="row">
+            <div class="col-12">
+                <nav class="navbar navbar-right navbar-dark">
+                    <a class="navbar-brand" href="#"><span class="h1 ml-2 font-weight-bold">SRePS</span></a>
+                    <button class="btn btn-outline-light" id="LogButton" type="submit">Log In</button>
+                </nav>
+            </div>
+        </div>
+        
+        <div class="container-fluid">
+        <div class="row">
+            <nav class="col-lg-2 px-0 bg-secondary sidebar">
+                <ul class="nav flex-column nav-pills">
+                    <h4 class="sidebar-heading px-3 py-3">
+                            <span>Sales Management</span>
+                    </h4>
+                    <li class="nav-item"><a class="nav-link text-white" href="AddSales.html"><i class="fas fa-file-medical mr-3"></i><span class="font-weight-bold">Add New Sales</span></a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="DisplayRecord.html"><i class="fas fa-file-invoice mr-3"></i>Manage Sales Record</a></li>
                 </ul>
-			</nav>
-
-            <div class="col-8 container-fluid">
+                <ul class="nav flex-column nav-pills">
+                    <h4 class="sidebar-heading mt-5 px-3 py-3">
+                        <span>Inventory Management</span>
+                    </h4>
+                    <li class="nav-item"><a class="nav-link text-white" href="AddProduct.html"><i class="fas fa-folder-plus mr-3"></i>Add New Product</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="inventoryMain.html"><i class="fas fa-archive mr-3"></i>Manage Inventory</a></li>
+                </ul>
+                <ul class="nav flex-column nav-pills">
+                    <h4 class="sidebar-heading mt-5 px-3 py-3">
+                            <span>Reports & Analytics</span>
+                    </h4>
+                    <li class="nav-item"><a class="nav-link text-white" href="Generate_Report.html"><i class="fas fa-file-invoice mr-3"></i>Generate Report</a></li>
+                    <li class="nav-item"><a class="nav-link active bg-white text-dark" href="Generate_Forecast.html"><i class="fas fa-file-contract mr-3"></i>Generate Analytics</a></li>
+                </ul>
+            </nav>
+            
+            <!-- CONTENT -->
+            <main class="col-lg-10 bg-white px-5 py-4 text-black"> 
                 <form onsubmit="return false">
                     <h1>Genarate Analytics</h1>
 
@@ -77,16 +95,18 @@
                         
                         <div class="col-6">
                             <label for="endDate">End Date:</label>
-                            <input type="date" class="date" id="endDate" disabled/>
+                            <input type="date" class="form-control date" id="endDate" disabled/>
                         </div>
                     </div>
                     
+                    <br>
 
-                    <div class="form-row">
+                    <div class="form-row ml-0">
                         <button id="generateGraphsButton" class="btn btn-outline-primary mr-3">Genarate Graphs</button>
                         <button id="ExportReportsButton" class="btn btn-outline-primary"disabled>Export Reports</button>
                     </div>
                 </form>
+                
                 <br/>
                 <!-- <canvas id="pieChart" ></canvas> -->
                 <br/>
@@ -99,12 +119,11 @@
                     <div class="col">
                         <canvas id="barChartMonths"></canvas>
                     </div>
-                </div>
-                        
-                       
-            </div>
+                </div>   
+            </main>
+            <br/>
         </div>
-    </div>
+        </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

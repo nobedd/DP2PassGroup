@@ -3,6 +3,10 @@ var d = new Date().toDateString()
 document.getElementById("startDate").value = "2010-01-01";
 document.getElementById("endDate").valueAsDate = new Date();
 
+function paginateTable() {
+    $("#tableRecord").DataTable();
+}
+
 function generateTable(){
     var startDate = new Date($("#startDate").val());
     var endDate = new Date($("#endDate").val());
@@ -29,6 +33,8 @@ db.collection("SalesRecord").where("Date", ">=", startDate).where("Date", "<=", 
             content += '</tr>';
             IDcounterForEachRecord++;
     });
+
+    setTimeout(paginateTable, 100);
 
     $(document).on("click", ".deleteRecord", function(){
     if (confirm("Proceed to Delete: click OK")) {

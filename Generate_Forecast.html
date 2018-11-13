@@ -38,74 +38,70 @@
 			</nav>
 
             <div class="col-8 container-fluid">
+                <form onsubmit="return false">
+                    <h1>Genarate Analytics</h1>
 
-                        <form onsubmit="return false">
-                            <h1>Genarate Analytics</h1>
-
-                            <div class="form-row ml-0">
-                                <p>Choose period:</p>
-                                <div class="custom-control custom-radio custom-control-inline ml-2">
-                                    <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodDaily"/>
-                                    <label class="custom-control-label" for="radioPeriodDaily">Daily</label>
-                                </div>
-
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodWeekly"/>
-                                    <label class="custom-control-label" for="radioPeriodWeekly">Weekly</label>
-                                </div>
-
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodMonthly"/>
-                                    <label class="custom-control-label" for="radioPeriodMonthly">Monthly</label>
-                                </div>
-
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodYearly"/>
-                                    <label class="custom-control-label" for="radioPeriodYearly">Yearly</label>
-                                </div>
-
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodCustom"/>
-                                    <label class="custom-control-label" for="radioPeriodCustom">Custom</label>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="col-6">
-                                    <label for="startDate">Start Date:</label>
-                                    <input type="date" class="date" id="startDate"/>
-                                </div>
-                                
-                                <div class="col-6">
-                                    <label for="endDate">End Date:</label>
-                                    <input type="date" class="date" id="endDate" disabled/>
-                                </div>
-                            </div>
-                            
-
-                            <div class="form-row">
-                                <button id="generateGraphsButton" class="btn btn-outline-primary mr-3">Genarate Graphs</button>
-                                <button id="ExportReportsButton" class="btn btn-outline-primary"disabled>Export Reports</button>
-                            </div>
-                        </form>
-                        <br/>
-                        <!-- <canvas id="pieChart" ></canvas> -->
-                        <br/>
-                        <div class="row"> 
-                            <div class="col">
-                                <canvas id="pieChartProduct"></canvas>
-                            </div>
+                    <div class="form-row ml-0">
+                        <p>Choose period:</p>
+                        <div class="custom-control custom-radio custom-control-inline ml-2">
+                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodDaily"/>
+                            <label class="custom-control-label" for="radioPeriodDaily">Daily</label>
                         </div>
-                        <div class="row"> 
-                            <div class="col">
-                                <canvas id="barChartMonths"></canvas>
-                            </div>
+
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodWeekly"/>
+                            <label class="custom-control-label" for="radioPeriodWeekly">Weekly</label>
+                        </div>
+
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodMonthly"/>
+                            <label class="custom-control-label" for="radioPeriodMonthly">Monthly</label>
+                        </div>
+
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodYearly"/>
+                            <label class="custom-control-label" for="radioPeriodYearly">Yearly</label>
+                        </div>
+
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodCustom"/>
+                            <label class="custom-control-label" for="radioPeriodCustom">Custom</label>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-6">
+                            <label for="startDate">Start Date:</label>
+                            <input type="date" class="date" id="startDate"/>
                         </div>
                         
-                       
+                        <div class="col-6">
+                            <label for="endDate">End Date:</label>
+                            <input type="date" class="date" id="endDate" disabled/>
+                        </div>
+                    </div>
+                    
+
+                    <div class="form-row">
+                        <button id="generateGraphsButton" class="btn btn-outline-primary mr-3">Genarate Graphs</button>
+                        <button id="ExportReportsButton" class="btn btn-outline-primary"disabled>Export Reports</button>
                     </div>
                 </form>
                 <br/>
+                <!-- <canvas id="pieChart" ></canvas> -->
+                <br/>
+                <div class="row"> 
+                    <div class="col">
+                        <canvas id="pieChartProduct"></canvas>
+                    </div>
+                </div>
+                <div class="row"> 
+                    <div class="col">
+                        <canvas id="barChartMonths"></canvas>
+                    </div>
+                </div>
+                        
+                       
             </div>
         </div>
     </div>

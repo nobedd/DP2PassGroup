@@ -1,27 +1,11 @@
 $(document).ready(function(){
     var db = firebase.firestore();
     var ProductList = [];
-    
+
+    $("#startDate").val(moment().format('YYYY-MM-DD'));
     $("#radioPeriodDaily").prop('checked', true);
+    $("#endDate").val(moment(new Date($("#startDate").val()), 'YYYY-MM-DD').add(1, 'days').format('YYYY-MM-DD')).prop('disabled', true);
 
-    $(document).on("change", ".radioPeriod, #startDate", function(){
-        var startDate = new Date($("#startDate").val());
-        var daily = (startDate.getFullYear() + "-" + (startDate.getMonth()+1) + "-" + (startDate.getDate()+1));
-        var monthly = (startDate.getFullYear() + "-" + (startDate.getMonth()+1) + "-" + (startDate.getDate()+7));
-        var weekly = (startDate.getFullYear() + "-" + (startDate.getMonth()+2) + "-" + startDate.getDate());
-        var yearly =((startDate.getFullYear()+1) + "-" + (startDate.getMonth()+1) + "-" + startDate.getDate());
-
-        if ($("#radioPeriodCustom").is(":checked"))
-            $("#endDate").attr("min", "").attr("max", "").prop('disabled', false);
-        else if($("#radioPeriodDaily").is(":checked"))
-            $("#endDate").attr("min", daily).attr("max", daily).val(daily).prop('disabled', true);
-        else if($("#radioPeriodWeekly").is(":checked"))
-            $("#endDate").attr("min", monthly).attr("max", monthly).val(monthly).prop('disabled', true);
-        else if($("#radioPeriodMonthly").is(":checked"))
-            $("#endDate").attr("min", weekly).attr("max", weekly).val(weekly).prop('disabled', true);
-        else if($("#radioPeriodYearly").is(":checked"))
-            $("#endDate").attr("min", yearly).attr("max", yearly).val(yearly).prop('disabled', true);
-    })
 
     db.collection("Products").orderBy("PName", "asc")
     .get()
@@ -78,18 +62,36 @@ $(document).ready(function(){
             })     
         })
 
-    })
-
-    $('#exportTableButton').click(function(){
-        if($("#table tbody").is(":empty")){
-            alert("Table is empty, please generate the table first");
-        }
-        else{
-            $("#table").first().table2csv();
-            $('#table').table2csv('download', options)
-        }
-        
-    })
-    
-    
+    })  
 });
+
+
+$(document).on("change", ".radioPeriod, #startDate", function(){
+    var startDate = new Date($("#startDate").val());
+    var daily = moment(startDate, 'YYYY-MM-DD').add(1, 'days').format('YYYY-MM-DD');       
+    var weekly = moment(startDate, 'YYYY-MM-DD').add(1, 'weeks').format('YYYY-MM-DD');
+    var monthly = moment(startDate, 'YYYY-MM-DD').add(1, 'months').format('YYYY-MM-DD');
+    var yearly = moment(startDate, 'YYYY-MM-DD').add(1, 'years').format('YYYY-MM-DD');
+
+    if ($("#radioPeriodCustom").is(":checked"))
+        $("#endDate").prop('disabled', false);
+    else if($("#radioPeriodDaily").is(":checked"))
+        $("#endDate").val(daily).prop('disabled', true);
+    else if($("#radioPeriodWeekly").is(":checked"))
+        $("#endDate").val(weekly).prop('disabled', true);
+    else if($("#radioPeriodMonthly").is(":checked"))
+        $("#endDate").val(monthly).prop('disabled', true);
+    else if($("#radioPeriodYearly").is(":checked"))
+        $("#endDate").val(yearly).prop('disabled', true);
+})
+
+
+$('#exportTableButton').click(function(){
+    if($("#table tbody").is(":empty")){
+        alert("Table is empty, please generate the table first");
+    }
+    else{
+        $("#table").first().table2csv();
+        $('#table').table2csv('download', options)
+    } 
+})

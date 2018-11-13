@@ -5,6 +5,9 @@ $(document).ready(function(){
     var totalPrice;
     var formTableRowCount = 0;
 
+    //set date to today in date input
+    $("#salesDate").val(moment().format('YYYY-MM-DD'));
+    
     //Populate Map for ProductName : SellingPrice
     db.collection("Products").orderBy("PName","asc")
     .get()
@@ -46,7 +49,7 @@ $(document).ready(function(){
         content += '<td class="onChangeUpdatePrice"><input type="number" id="inputDetailsQuantity' + i + '" class="form-control" placeholder="Enter quantity" min="1" required /></td>';
         content += '<td class="unitPrice" id="unitPrice' + i + '"></td>';
         content += '<td class="totalUnitPrice" id="totalUnitPrice' + i + '"></td>';
-        content += '<td><button id="remove" class="btn btn-danger remove">Remove</button></td></tr>';
+        content += '<td><button id="remove" class="btn btn-outline-danger remove">Remove</button></td></tr>';
         $('#dynamic_SalesDetailsField').append(content);
         populateSelectDropdownWithProducts(i);
         
@@ -81,13 +84,15 @@ $(document).ready(function(){
 
     //onSubmit function
     $("#addSalesForm").submit(function(event){
+    if (confirm("Save this Sales Record to database?")) {
         var CurrentDropdownSelect = "";
         var SaveSalesDetailsID = [];
         var SaveDetails = [];
+
         //Delete this afterwards and uncomment the bottom one
         var SaveDate = new Date($("#salesDate").val());
         //var SaveDate = new Date();
-
+        
         var rowID = 0;
         for(rowID = 0; rowID < formTableRowCount+1; rowID++){ 
             CurrentDropdownSelect = $("#dropdownDetails" + rowID +" option:selected").text();
@@ -101,7 +106,7 @@ $(document).ready(function(){
                 });
             }       
         }
-
+        console.log(moment(SaveDate).format("MMMM"));
         SaveDetails.forEach(function(details, index){
             db.collection("SalesDetails").add({
                 ProductName: details.name,
@@ -109,18 +114,24 @@ $(document).ready(function(){
                 Quantity: details.quantity,
                 UnitPrice: details.unitPrice,
                 TotalUnitPrice: details.totalUnitPrice,
-                Date: SaveDate
-
+                Date: SaveDate,
+                DateMonth: moment(SaveDate).format("MMMM")
             })
             .then(function(docRef){
                 console.log("SD success!", docRef.id);
+                // pop up alert
+                var contenti = "";
+                contenti += '<div class="alert alert-success alert-dismissible"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Success!</strong> Sales Record: '+docRef.id+' added to database </div>'
+                $('#returnStatus').append(contenti);
+
                 SaveSalesDetailsID.push(docRef.id);
 
                 if(index == SaveDetails.length-1){
                     db.collection("SalesRecord").add({
                         IDs: SaveSalesDetailsID,
                         TotalPrice: totalPrice,
-                        Date: SaveDate
+                        Date: SaveDate,
+                        DateMonth: moment(SaveDate).format("MMMM")
                     })
                     .then(function(docRef){
                         console.log("SR success!", docRef.id)
@@ -135,6 +146,10 @@ $(document).ready(function(){
             });   
 
         });   
+
+    } else {
+        alert("nothing submitted");
+    }
     });
 
 })

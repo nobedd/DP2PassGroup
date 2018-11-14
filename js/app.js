@@ -1,4 +1,3 @@
-//(function(){
     var config = {
         apiKey: "AIzaSyAd_KsL66EQmcNGlecBSYBOJMieoxi5Qyk",
         authDomain: "dp2passgroup.firebaseapp.com",
@@ -13,31 +12,19 @@
     const settings = {/* your settings... */ timestampsInSnapshots: true};
     firestore.settings(settings);
 
-    var AccountBool;
-
     LogButton.addEventListener("click", function(){
-        if (!AccountBool){
-            firebase.auth().signInAnonymously();
-            LogButton.innerText = "Log Out";
-            AccountBool = true
-        }
-        else{
             firebase.auth().signOut();
-            LogButton.innerText = "Log In";
-            AccountBool = false
-        }
+            window.location.replace("login.html");
     });
 
     firebase.auth().onAuthStateChanged(function(user){
-        console.log(user);
+        console.log(user.email);
         if(user){
             console.log("you have signed in")
-            // document.getElementById("signoutButton").style.visibility = "visible"
-            AccountBool = true
-        } else{
-            console.log("you have signed off");
-            // document.getElementById("signoutButton").style.visibility = "hidden"
-            AccountBool = false
+            if(user != null){
+                console.log("Currently signed in as: " + user.email);
+              }
+        } else {
+            console.log("Signed off");
         }
     })
-//})

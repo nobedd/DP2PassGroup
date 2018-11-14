@@ -64,7 +64,7 @@
                     <h4 class="card-header" id="addCategory">Add a new product</h4>
                     <div class="card-body">
                         <p id="statusbar"></p>
-                        <form onsubmit="return false" >     
+                        <form id="addProductForm" onsubmit="return false" >     
                             <div class="form-group row ml-0">
                                 <label for="productName">Product Name</label>   
                                 <input type="text"  class="form-control col-md-12" id="productName" placeholder="Enter Product name" required/>
@@ -86,7 +86,8 @@
                                     <option value="">Select a category</option>
                                 </select>
                             </div>
-                            <button type="submit" id="saveProductButton" class="btn btn-outline-primary">Save Product</button>
+                            <button type="reset" class="btn btn-outline-secondary">Reset</button>
+                            <button type="submit" id="saveProductButton" class="btn btn-outline-primary">Save Product</button>                          
                         </form>
                     </div>
                 </div><br/>
@@ -95,38 +96,39 @@
                 <h2>Manage Category</h2> 
                 <div class="row">
                     <div class="col"> 
-                            <div class="card">
-                                <h4 class="card-header" id="addCategory">Add a new Category</h4>
-                                <div class="card-body"> 
-                                    <div id="statusbarCat"></div>    
-                                    <form onsubmit="return false" >          
-                                        <label for="categoryName">Category name</label>
-                                        <br>
-                                        <input type="text" id="categoryName" placeholder="Enter Category name" class="form-control col-md-12" required/>
-                                        <br>
-                                        <button type="submit" id="saveCategoryButton" class="btn btn-outline-primary">Save Category</button>
-                                    </form>
-                                </div>      
-                            </div>
+                        <div class="card">
+                            <h4 class="card-header" id="addCategory">Add a new Category</h4>
+                            <div class="card-body"> 
+                                <div id="statusbarCat"></div>    
+                                <form id="addCategoryForm" onsubmit="return false" >          
+                                    <label for="categoryName">Category name</label>
+                                    <input type="text" id="categoryName" placeholder="Enter Category name" class="form-control col-md-12" required/>
+                                    <br>
+                                    <button type="reset" class="btn btn-outline-secondary">Reset</button>
+                                    <button type="submit" id="saveCategoryButton" class="btn btn-outline-primary">Save Category</button>
+                                </form>
+                            </div>      
+                        </div>
                     </div >
                     <div class="col"> 
-                            <div class="card">
-                                <h4 class="card-header">Delete a Category</h4>
-                                <div class="card-body">
+                        <div class="card">
+                            <h4 class="card-header">Delete a Category</h4>
+                            <div class="card-body">
+                                <form id="deleteCategoryForm" onsubmit="return false" >  
                                     <div id="statusbarCatDel"></div>
                                     <label for="categoryDeleteDrop">Select category</label>
                                     <select id="categoryDeleteDrop" class="custom-select" required>
                                         <option value="">Select a category to delete</option>
                                     </select>
-                                    <br><br>
-                                    <button id="buttonDeleteCategory" class="btn btn-outline-danger">Delete Category</button>
-                                </div>
+                                    <br/><br/>
+                                    <button type="reset" class="btn btn-outline-secondary">Reset</button>
+                                    <button type="submit" id="buttonDeleteCategory" class="btn btn-outline-danger">Delete Category</button>
+                                </form>
                             </div>
+                        </div>
                     </div >
-                </div>
-                
-                
-               
+                </div>                   
+
             </main>
         </div>
     </div>

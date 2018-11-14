@@ -16,6 +16,24 @@
     background-color: black;
 }
 
-body{
+html, body{
     overflow-x: hidden;
+    height: 100%;
+}
+
+.jumbotron{
+    background-color: rgb(61, 61, 61) !important;
+}
+
+.jumbotron h1{
+    color: white !important;
+    font-weight: bold;
+}
+
+#login{
+    background-color: rgba(220, 220, 220, 0.795);
+}
+
+::placeholder{
+    color: lightgray !important;
 }

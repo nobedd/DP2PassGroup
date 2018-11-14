@@ -12,6 +12,13 @@
     const settings = {/* your settings... */ timestampsInSnapshots: true};
     firestore.settings(settings);
 
+    var user = firebase.auth().currentUser;
+    if (user) {
+
+      } else {
+        // No user is signed in.
+      }
+
     LogButton.addEventListener("click", function(){
             firebase.auth().signOut();
             window.location.replace("login.html");
@@ -21,8 +28,13 @@
         console.log(user.email);
         if(user){
             console.log("you have signed in")
+            //get user information
+            var uid;
+            uid = user.uid;
+            console.log("User ID: " + uid);
+
             if(user != null){
-                console.log("Currently signed in as: " + user.email);
+                // console.log("Currently signed in as: " + user.email);
               }
         } else {
             console.log("Signed off");

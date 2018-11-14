@@ -59,66 +59,114 @@
             <!-- CONTENT -->
             <main class="col-lg-10 bg-white px-5 py-4 text-black"> 
                 <h1 class="border-bottom">Genarate Analytics</h1>
-                <form onsubmit="return false">
-                    <div class="form-row ml-0">
-                        <p>Choose period:</p>
-                        <div class="custom-control custom-radio custom-control-inline ml-2">
-                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodDaily"/>
-                            <label class="custom-control-label" for="radioPeriodDaily">Daily</label>
-                        </div>
-
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodWeekly"/>
-                            <label class="custom-control-label" for="radioPeriodWeekly">Weekly</label>
-                        </div>
-
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodMonthly"/>
-                            <label class="custom-control-label" for="radioPeriodMonthly">Monthly</label>
-                        </div>
-
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodYearly"/>
-                            <label class="custom-control-label" for="radioPeriodYearly">Yearly</label>
-                        </div>
-
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodCustom"/>
-                            <label class="custom-control-label" for="radioPeriodCustom">Custom</label>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="col-6">
-                            <label for="startDate">Start Date:</label>
-                            <input type="date" class="form-control date" id="startDate"/>
-                        </div>
-                        
-                        <div class="col-6">
-                            <label for="endDate">End Date:</label>
-                            <input type="date" class="form-control date" id="endDate" disabled/>
-                        </div>
-                    </div>
-                    
-                    <br>
-
-                    <div class="form-row ml-0">
-                        <button id="generateGraphsButton" class="btn btn-outline-primary mr-3">Genarate Graphs</button>
-                        <button id="ExportReportsButton" class="btn btn-outline-primary"disabled>Export Reports</button>
-                    </div>
-                </form>
+                <br/>
                 
-                <br/>
-                <!-- <canvas id="pieChart" ></canvas> -->
-                <br/>
-                <div class="row"> 
-                    <div class="col">
-                        <canvas id="pieChartProduct"></canvas>
+                <h4>Set Filter</h4>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs pull-right"  id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#yearTab" role="tab" aria-controls="home" aria-selected="true">Year</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#dateTab" role="tab" aria-controls="profile" aria-selected="false">Date filter</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#productTab" role="tab" aria-controls="contact" aria-selected="false">Product filter</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content" id="nav-tabContent">
+                            <!-- Year Tab -->
+                            <div class="tab-pane fade show active" id="yearTab" role="tabpanel" aria-labelledby="home-tab">
+                                <h4>Generate 2018 products graph</h4>
+                                <button id="generateGraphYearButton" class="btn btn-outline-primary mr-3">Genarate Graphs</button>
+                                <button id= "yearExport" class="btn btn-outline-primary">Export </button>
+                            </div>
+
+                            <!-- Date Tab -->
+                            <div class="tab-pane fade" id="dateTab" role="tabpanel" aria-labelledby="profile-tab">
+                                <h4>Filter by date range</h4>
+                                <form onsubmit="return false">
+                                    <div class="form-row ml-0">
+                                        <div class="custom-control custom-radio custom-control-inline ml-2">
+                                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodDaily"/>
+                                            <label class="custom-control-label" for="radioPeriodDaily">Daily</label>
+                                        </div>
+                
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodWeekly"/>
+                                            <label class="custom-control-label" for="radioPeriodWeekly">Weekly</label>
+                                        </div>
+                
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodMonthly"/>
+                                            <label class="custom-control-label" for="radioPeriodMonthly">Monthly</label>
+                                        </div>
+                
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodYearly"/>
+                                            <label class="custom-control-label" for="radioPeriodYearly">Yearly</label>
+                                        </div>
+                
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodCustom"/>
+                                            <label class="custom-control-label" for="radioPeriodCustom">Custom</label>
+                                        </div>
+                                    </div>
+                                    
+                
+                                    <div class="form-row">
+                                        <div class="col-6">
+                                            <label for="startDate">Start Date:</label>
+                                            <input type="date" class="form-control date" id="startDate"/>
+                                        </div>
+                                        
+                                        <div class="col-6">
+                                            <label for="endDate">End Date:</label>
+                                            <input type="date" class="form-control date" id="endDate" disabled/>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="form-row ml-0">
+                                        <button id="generateGraphsWithDateButton" class="btn btn-outline-primary mr-3" disabled>Genarate Graphs</button>
+                                        <button class="btn btn-outline-primary"disabled>Export Reports</button>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                            <!-- Product Tab -->
+                            <div class="tab-pane fade" id="productTab" role="tabpanel" aria-labelledby="contact-tab">
+                                <h4>Filter by product</h4>
+                                <select id="dropdownDetails" class="custom-select" required>
+                                    <option value="">Select a product</option>
+                                </select>
+                                <br/><br/>
+                                <button id="generateGraphProductButton" class="btn btn-outline-primary mr-3">Genarate Graphs</button>
+
+                                <div class="btn-group mr-3">
+                                    <button id="addDatasetsProductButton" class="btn btn-outline-secondary">Add dataset</button>
+                                    <button id="removeDatasetsProductButton" class="btn btn-outline-danger">Remove dataset</button>
+                                </div>
+
+                                <button id="productExportButton" class="btn btn-outline-primary" >Export Graphs</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="row"> 
-                    <div class="col">
-                        <canvas id="barChartMonths"></canvas>
+
+                <br/>
+                <div class="card"> 
+                    <div class="card-body">
+                        <canvas id="chart1"></canvas>
+                    </div>
+                </div>
+                <br/>
+                <div class="card"> 
+                    <div class="card-body">
+                        <canvas id="chart2"></canvas>
                     </div>
                 </div>   
             </main>
@@ -130,6 +178,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="js/app.js"></script>
+    <script src="js/FileSaver.min.js"></script>
+    <script src="js/canvas-toBlob.js"></script>
     <script src="js/generateForecast.js"></script>
 
 </body>

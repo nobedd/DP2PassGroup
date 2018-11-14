@@ -16,8 +16,10 @@
                 content += "<option value='" + IDcounterForEachProduct + "'>" + doc.data().Category + "</option>";
             })
             $('#dropdownCategory').empty(content);
+            $('#dropdownCategory').append('<option value="">Select a category</option>');
             $('#dropdownCategory').append(content);
             $('#categoryDeleteDrop').empty(content);
+            $('#categoryDeleteDrop').append('<option value="">Select a category</option>');
             $('#categoryDeleteDrop').append(content);
         })
     }
@@ -25,37 +27,35 @@
     populateSelectDropdownCategory();
 
     //Button to Save the products
-    saveProductButton.addEventListener("click", function(){
+    $("#addProductForm").submit(function(){
         var contenti = "";
-        if (confirm('Are you sure you want to save this thing into the database?')) {
-            const SaveProductName = inputProductName.value;
-            const SaveProductPrice = inputProductPrice.value;
-            const SaveProductRawPrice = inputProductRawPrice.value;
-            var selectedCategory = $("#dropdownCategory option:selected").text()
-    
-            db.collection("Products").add({
-                PName: SaveProductName,
-                Sales_Price: SaveProductPrice,
-                Raw_Price: SaveProductRawPrice,
-                Category: selectedCategory,
-                archive: false
-            })
-            .then(function(docRef){
-                console.log("Product saved!", docRef.id);            
-                contenti += '<div class="alert alert-success alert-dismissible"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Success!</strong> Product '+SaveProductName+' added to database </div>'
-                $('#statusbar').append(contenti);
-            })
-            .catch(function(error){
-                console.log("Got an error: ", error);
-                contenti +='<div class="alert alert-danger alert-dismissible"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong> Something went wrong. The product might not have been saved.</div>'
-            }); 
-        } else {
-            alert("Nothing changed");
-        }
+        const SaveProductName = inputProductName.value;
+        const SaveProductPrice = inputProductPrice.value;
+        const SaveProductRawPrice = inputProductRawPrice.value;
+        var selectedCategory = $("#dropdownCategory option:selected").text()
+
+        db.collection("Products").add({
+            PName: SaveProductName,
+            Sales_Price: SaveProductPrice,
+            Raw_Price: SaveProductRawPrice,
+            Category: selectedCategory,
+            archive: false
+        })
+        .then(function(docRef){
+            console.log("Product saved!", docRef.id);            
+            contenti += '<div class="alert alert-success alert-dismissible"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Success!</strong> Product '+SaveProductName+' added to database </div>'
+            $('#statusbar').append(contenti);
+            $('#addProductForm :input').val('');
+        })
+        .catch(function(error){
+            console.log("Got an error: ", error);
+            contenti +='<div class="alert alert-danger alert-dismissible"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Error!</strong> Something went wrong. The product might not have been saved.</div>'
+        }); 
+        
     });
 
     const inputCategoryName = document.querySelector("#categoryName")
-    saveCategoryButton.addEventListener("click", function(){
+    $("#addCategoryForm").submit(function(){
         const SaveCategoryName = inputCategoryName.value;
         inputCategoryName.value='';
         if(SaveCategoryName=='NIL'||SaveCategoryName=='nil' ||SaveCategoryName=='Nil'){
@@ -98,7 +98,7 @@ $("#categoryDeleteDrop").change(function(){
 })
 
 //Delete category functionality
-buttonDeleteCategory.addEventListener("click", function(){
+$("#deleteCategoryForm").submit(function(){
     if (confirm('Are you sure you want to delete this thing from the database?')) {
         var selectedDeleteID = $("#categoryDeleteDrop option:selected").val()
         var selectedDeleteText = $("#categoryDeleteDrop option:selected").text()

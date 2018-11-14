@@ -2,7 +2,14 @@ firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
       // User is signed in.
       console.log(user.email + " signed in");
-      window.location.replace("AddSales.html");
+      if (user.uid =="PryfLkAhUWYNTXG1jWSpNJf94zo1"){
+        window.location.replace("AddSales.html");
+      }
+
+      if (user.uid=="vAHtbuIEkXZHmJTLlBBao5lZnjf2"){
+        window.location.replace("Generate_Forecast.html");
+      }
+      
       //   document.getElementById("user_div").style.display = "block";
       //   document.getElementById("login_div").style.display = "none";  
       //   var user = firebase.auth().currentUser;

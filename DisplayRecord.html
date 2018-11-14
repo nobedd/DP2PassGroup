@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Add Display Record</title>
+    <title>Manage Sales Record</title>
     <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-firestore.js"></script>
@@ -33,31 +33,30 @@
 
         </nav>
 
-        <!-- CONTENT -->
-        <main class="col-lg-10 bg-white px-5 py-4 text-black">   
-                <!-- <h1>SALES REPORTING AND PREDICITON SYSTEM</h1> -->
-                <!-- <p>LOGIN FOR GAY</p> -->
-                
-                <!-- put shit here -->
-                <h1>Sales Record</h1>
-                
-                <form onsubmit="return false">
-                    <div class="row">
-                        <div class="col"><label for="startDate">Start Date:</label></div>
-                        <div class="col"><label for="endDate">End Date:</label></div>
+            <!-- CONTENT -->
+            <main class="col-lg-10 bg-white px-5 py-4 text-black">   
+                <h1 class="border-bottom">Manage Sales Record</h1>
+                <br/>
+                <div class="card">
+                    <h4 class="card-header">Set Date Range</h4  >
+                    <div class="card-body">
+                        <form onsubmit="return false">
+                            <div class="row">
+                                <div class="col"><label for="startDate">Start Date:</label></div>
+                                <div class="col"><label for="endDate">End Date:</label></div>
+                            </div>
+                            <div class="row">
+                                <div class="col"><input type="date" class="date form-control col-md-7" id="startDate"/></div>
+                                <div class="col"><input type="date" class="date date form-control col-md-7" id="endDate"/></div>
+                            </div>
+                            <br/>
+        
+                            <button id="searchDate" class="btn btn-outline-primary col-3">Search</button>
+                        </form>
                     </div>
-                    <div class="row">
-                        <div class="col"><input type="date" class="date form-control col-md-7" id="startDate"/></div>
-                        <div class="col"><input type="date" class="date date form-control col-md-7" id="endDate"/></div>
-                    </div>
+                </div>
+                <br/>
 
-                    <br>
-
-                    <button id="searchDate" class="btn btn-outline-primary col-md-3">Search</button>
-                </form>
-
-                <br>
-                <div class="col-12 bg-white pt-3 text-white container-fluid">
                 <div class="table-responsive">
                     <table id="tableRecord" class="table table-bordered">
                         <!-- <caption>Product List</caption>  -->

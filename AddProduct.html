@@ -28,70 +28,86 @@
     </div>
     
     <div class="container-fluid">
-    <div class="row">
-        <nav class="col-lg-2 px-0 bg-secondary" id="navigationSide">
+        <div class="row">
+            <nav class="col-lg-2 px-0 bg-secondary" id="navigationSide">
 
-        </nav>
-        
-        <!-- CONTENT -->
-        <main class="col-lg-10 bg-white px-5 py-4 text-black">   
-                <!-- <h1>SALES REPORTING AND PREDICITON SYSTEM</h1> -->
-                <!-- <p>LOGIN FOR GAY</p> -->
-                <!-- <button id="testbtn">Test</button> -->
-                
-                <p id="statusbar"></p>
-                <form onsubmit="return false">
-                    <h1 id="addProduct">Add product</h1>
-                    <div class="form-group row ml-0">
-                        <label for="productName">Product Name</label>   
-                        <input type="text" class="form-control col-md-12" id="productName"/>
-                    </div>
-                    
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col"><label for="productRawPrice">Product Raw Price</label></div>
-                            <div class="col"><label for="productPrice">Product Sales Price</label></div>
-                        </div>
-                        <div class="row">
-                            <div class="col"><input type="number" class="form-control col-md-4" id="productRawPrice"/></div>
-                            <div class="col"><input type="number" class="form-control col-md-4" id="productPrice"/></div>
-                        </div>
-                    </div>
+            </nav>
             
-                    <div class="form-group row ml-0">
-                        <label for="dropdownCategory">Product Category</label>
-                        <!-- <input type="text" class="form-control col-md-12" id="productCategory" disabled /> -->
-                            <select id="dropdownCategory" class="custom-select" required>
-                                <option value="">Select a category</option>
-                            </select>
-                    </div>
-                    <button id="saveProductButton" class="btn btn-outline-primary">Save Product</button>
-                </form>
-
-                <br>
+            <!-- CONTENT -->
+            <main class="col-lg-10 bg-white px-5 py-4 text-black">   
                 
-                <h2>Manage Category</h2>                       
-                <!-- <form> -->
-                <h3 id="addCategory">Add a new Category</h3>
-                <label for="categoryName">Category name</label>
-                <br>
-                <input type="text" id="categoryName" class="form-control col-md-12"/>
-                <br>
-                <button id="saveCategoryButton" class="btn btn-outline-primary">Save Category</button>
-                <div id="statusbarCat"></div>
-                <!-- </form> -->
-                <br>
+                <h1 class="border-bottom">Add Inventory</h1>
+                <br/>
+                <div class="card">
+                    <h4 class="card-header" id="addCategory">Add a new product</h4>
+                    <div class="card-body">
+                        <p id="statusbar"></p>
+                        <form id="addProductForm" onsubmit="return false" >     
+                            <div class="form-group row ml-0">
+                                <label for="productName">Product Name</label>   
+                                <input type="text"  class="form-control col-md-12" id="productName" placeholder="Enter Product name" required/>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col"><label for="productRawPrice">Product Raw Price</label></div>
+                                    <div class="col"><label for="productPrice">Product Sales Price</label></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col"><input type="number" class="form-control col-6" id="productRawPrice" placeholder="Enter Product raw price" required/></div>
+                                    <div class="col"><input type="number" class="form-control col-6" id="productPrice" placeholder="Enter Product selling price" required/></div>
+                                </div>
+                            </div>
+                            <div class="form-group row ml-0">
+                                <label for="dropdownCategory">Product Category</label>
+                                <select id="dropdownCategory" class="custom-select" required>
+                                    <option value="">Select a category</option>
+                                </select>
+                            </div>
+                            <button type="reset" class="btn btn-outline-secondary">Reset</button>
+                            <button type="submit" id="saveProductButton" class="btn btn-outline-primary">Save Product</button>                          
+                        </form>
+                    </div>
+                </div><br/>
 
-                <h3>Delete a Category</h3>
-                <div id="statusbarCatDel"></div>
-                <!-- <label for="categoryDelete">Delete a Category</label> -->
-                <!-- <input type="text" class="form-control col-md-12" id="productCategory" disabled /> -->
-                <select id="categoryDeleteDrop" class="custom-select" required>
-                    <option value="">Select a category to delete</option>
-                </select>
-                <br><br>
-                <button id="buttonDeleteCategory" class="btn btn-outline-danger">Delete Category</button>
-            </div>
+                
+                <h2>Manage Category</h2> 
+                <div class="row">
+                    <div class="col"> 
+                        <div class="card">
+                            <h4 class="card-header" id="addCategory">Add a new Category</h4>
+                            <div class="card-body"> 
+                                <div id="statusbarCat"></div>    
+                                <form id="addCategoryForm" onsubmit="return false" >          
+                                    <label for="categoryName">Category name</label>
+                                    <input type="text" id="categoryName" placeholder="Enter Category name" class="form-control col-md-12" required/>
+                                    <br>
+                                    <button type="reset" class="btn btn-outline-secondary">Reset</button>
+                                    <button type="submit" id="saveCategoryButton" class="btn btn-outline-primary">Save Category</button>
+                                </form>
+                            </div>      
+                        </div>
+                    </div >
+                    <div class="col"> 
+                        <div class="card">
+                            <h4 class="card-header">Delete a Category</h4>
+                            <div class="card-body">
+                                <form id="deleteCategoryForm" onsubmit="return false" >  
+                                    <div id="statusbarCatDel"></div>
+                                    <label for="categoryDeleteDrop">Select category</label>
+                                    <select id="categoryDeleteDrop" class="custom-select" required>
+                                        <option value="">Select a category to delete</option>
+                                    </select>
+                                    <br/><br/>
+                                    <button type="reset" class="btn btn-outline-secondary">Reset</button>
+                                    <button type="submit" id="buttonDeleteCategory" class="btn btn-outline-danger">Delete Category</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div >
+                </div>                   
+
+            </main>
         </div>
     </div>
     

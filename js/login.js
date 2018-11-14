@@ -16,7 +16,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
   } else {
       // No user is signed in.
-      console.log("No one is signed in")
+      console.log("Not signed in")
       //   document.getElementById("user_div").style.display = "none";
       //   document.getElementById("login_div").style.display = "block";
 

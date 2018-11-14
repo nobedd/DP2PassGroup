@@ -51,11 +51,15 @@ $(document).ready(function(){
     
                     $('#table').append(content);
                 }
-                //Report Summary tfoot
+                //Report Summary table
                 if(index == ProductList.length-1){
+                    var dateRange = moment(new Date($("#startDate").val()), 'YYYY-MM-DD').format('YYYY-MM-DD') + " - " + moment(new Date($("#endDate").val()), 'YYYY-MM-DD').format('YYYY-MM-DD');
+                    var totalGrossPercentage = totalGrossMargin / totalRevenue * 100;
+                    $("#dateRange").text(dateRange);
                     $("#totalQuantity").text(totalQuantity); 
                     $("#totalRevenue").text((totalRevenue).toFixed(2)); 
                     $("#totalGrossMargin").text((totalGrossMargin).toFixed(2)); 
+                    $("#totalGrossPercentage").text(totalGrossPercentage);
                 }
             }).catch(function(error){
                 alert(error);

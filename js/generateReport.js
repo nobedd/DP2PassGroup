@@ -59,7 +59,7 @@ $(document).ready(function(){
                     $("#totalQuantity").text(totalQuantity); 
                     $("#totalRevenue").text((totalRevenue).toFixed(2)); 
                     $("#totalGrossMargin").text((totalGrossMargin).toFixed(2)); 
-                    $("#totalGrossPercentage").text(totalGrossPercentage);
+                    $("#totalGrossPercentage").text((totalGrossPercentage).toFixed(2));
                 }
             }).catch(function(error){
                 alert(error);

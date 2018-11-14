@@ -50,13 +50,10 @@ $(document).ready(function(){
         db.collection("Products").orderBy("PName", "asc")
         .get()
         .then(function(querySnapshot){
-    
             querySnapshot.forEach(function(doc){
                 products.push(doc.data().PName)
             })
-    
             products.forEach(function(product, index){
-            
                 var monthlySales = []; 
                 var docRefSalesDetails = db.collection("SalesDetails").where("ProductName", "==", product);
 
@@ -135,9 +132,8 @@ $(document).ready(function(){
                                                                     console.log(topFiveProducts);
                                                                     barChartMonths();
                                                                     pieChartProduct();
-
-                                                                    
                                                                 }
+
                                                             })
                                                         })  
                                                     })                                                   
@@ -163,53 +159,6 @@ $(document).ready(function(){
             salesCount += doc.data().Quantity;
         })
         return salesCount
-    }
-
-
-    function getTopFive(map){
-        var props = Object.keys(map).map(function(key) {
-            return { key: key, value: this[key] };
-        }, map);
-        props.sort(function(p1, p2) { return p2.value - p1.value; });
-        var topFive = props.slice(0, 5).reduce(function(obj, prop) {
-            obj[prop.key] = prop.value;
-            return obj;
-          }, {});
-        return topFive;
-    }
-
-    function pieChart(map){
-        var ctx = $("#pieChart");
-        myChart = new Chart(ctx, {
-           type: 'pie',
-           data: {
-               labels: Object.keys(topFiveCategory),
-               datasets: [{
-                   label: '# of Votes',
-                   data: Object.values(topFiveCategory),
-                   backgroundColor: [
-                       'rgba(255, 99, 132, 0.2)',
-                       'rgba(54, 162, 235, 0.2)',
-                       'rgba(255, 206, 86, 0.2)',
-                       'rgba(75, 192, 192, 0.2)',
-                       'rgba(153, 102, 255, 0.2)',
-                       'rgba(255, 159, 64, 0.2)'
-                   ],
-                   borderColor: [
-                       'rgba(255,99,132,1)',
-                       'rgba(54, 162, 235, 1)',
-                       'rgba(255, 206, 86, 1)',
-                       'rgba(75, 192, 192, 1)',
-                       'rgba(153, 102, 255, 1)',
-                       'rgba(255, 159, 64, 1)'
-                   ],
-                   borderWidth: 1
-               }]
-           },
-           options: {
-               
-           }
-       });
     }
 
     function pieChartProduct(){
@@ -247,7 +196,8 @@ $(document).ready(function(){
                }]
            },
            options: {
-               
+                //maintainAspectRatio: false,
+                responsive: true,
            }
        });
     }
@@ -265,31 +215,39 @@ $(document).ready(function(){
                     label: topFiveProducts[0].product,
                     fill: false,
                     data: topFiveProducts[0].monthlySales,
+                    borderColor: 'rgba(255,99,132,1)'
 
                 }, {
                     label: topFiveProducts[1].product,
                     fill: false,
                     data: topFiveProducts[1].monthlySales,
+                    borderColor: 'rgba(54, 162, 235, 1)'
 
                 }, {
                     label: topFiveProducts[2].product,
                     fill: false,
                     data: topFiveProducts[2].monthlySales,
+                    borderColor: 'rgba(255, 206, 86, 1)'
 
                 }, {
                     label: topFiveProducts[3].product,
                     fill: false,
                     data: topFiveProducts[3].monthlySales,
+                    borderColor: 'rgba(75, 192, 192, 1)'
 
                 },{
                     label: topFiveProducts[4].product,
                     fill: false,
                     data: topFiveProducts[4].monthlySales,
-                }]
+                    borderColor: 'rgba(153, 102, 255, 1)'
+                }],
            },
 
 
            options: {
+            elements: {
+                tension: 0,
+            },
             responsive: true,
             title: {
                 display: true,

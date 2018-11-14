@@ -27,7 +27,7 @@ $(document).on("click", ".selectProduct", function(){
     $("#selectProduct").hide();
     $("#unselectProduct").show();
     $(".delectProduct").hide();
-    $("#delectProduct").show();
+    $("#deleteProduct").show();
     $(".checkSelectProduct").show();
 });
 
@@ -35,37 +35,57 @@ $(document).on("click", ".selectProduct", function(){
 $(document).on("click", ".unselectProduct", function(){
     $("#selectProduct").show();
     $("#unselectProduct").hide();
-    $("#delectProduct").hide();
+    $("#deleteProduct").hide();
     $(".delectProduct").show();
     $(".checkSelectProduct").hide();
 });
-        // $(document).on("click", "#deleteProduct", function(){
-        //     if (confirm("Proceed with Delete: click 'OK'\n")) {
-        //         console.log("deleted button clicked");//works
-        //             $(".checkSelectProduct").click(function(){
-        //                 if($(this).is(":checked")){
-        //                 var getrowIndex = $(this).closest('tr').attr('id');
-        //                 console.log(getrowIndex);//works
-        //                 var getPID = productIDarray[getrowIndex];
-        //                 console.log(getPID);//works
-        //                 $(this).closest('tr').remove();
+        //Check box function
+        var checkedlist = [];
+        var indexArray = [];
+        $(document).on("click", ".checkSelectProduct", function(){
+            var checked = $(this).is(":checked");
+            var getrowIndex = $(this).closest('tr').attr('id');
             
-        //                 //now i have to delete the document with getPID from the database
-        //                 db.collection("Products").doc(getPID).delete().then(function() {
-        //                     console.log("Document successfully deleted!");
-                            
-        //                 }).catch(function(error) {
-        //                     console.error("Error removing document: ", error);
-        //                 });
-        //                 //then triger a function that will delete the entire <tbody> and then reload it
-        //             } else {
-        //                 // Do nothing!
-        //             } 
-        //         });
-        //     }
+            if(checked){
+                console.log(getrowIndex);
+                indexArray.push(getrowIndex);
+                checkedlist.push(productIDarray[getrowIndex]);
+                
+            }else{
+                indexArray = indexArray.filter(x => x!= getrowIndex);
+                checkedlist = checkedlist.filter(x => x != productIDarray[getrowIndex]);
             
-        // });
+            }
+            console.log(checkedlist);
+            
+        });
 
+        $(document).on("click", "#deleteProduct", function(){
+            if (confirm("Proceed with Delete: click 'OK'\n")) {
+                console.log("deleted button clicked");//works
+                //loop to check every checkbox item
+                for (var i = 0; i < checkedlist.length; i++){
+                    if(indexArray!=null){
+                        
+                        console.log(indexArray[i]);//works
+                        var getPID = productIDarray[indexArray[i]];
+                        console.log(getPID);//works
+                        $(indexArray[i]).closest('tr').remove();
+            
+                        //now i have to delete the document with getPID from the database
+                        db.collection("Products").doc(getPID).delete().then(function() {
+                            console.log("Document successfully deleted!");
+                            
+                        }).catch(function(error) {
+                            console.error("Error removing document: ", error);
+                        });
+                    //then triger a function that will delete the entire <tbody> and then reload it
+                    } else {
+                    // Do nothing!
+                    } 
+                }
+            }
+        });
 
         setTimeout(paginateTable, 100); 
 

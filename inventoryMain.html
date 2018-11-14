@@ -22,7 +22,7 @@
     <div class="row">
         <div class="col-12">
             <nav class="navbar navbar-right navbar-dark">
-                <a class="navbar-brand" href="#"><span class="h1 ml-2 font-weight-bold">SRePS</span></a>
+                <a class="navbar-brand" href="#"><span class="h2 ml-2 font-weight-bold">SRePS</span></a>
                 <button class="btn btn-outline-light" id="LogButton" type="submit">Log In</button>
             </nav>
         </div>
@@ -30,30 +30,32 @@
     
     <div class="container-fluid">
     <div class="row">
-        <nav class="col-lg-2 px-0 bg-secondary sidebar">
+        <nav class="col-lg-2 px-0 bg-secondary">
+            <div class="sidenav">
             <ul class="nav flex-column nav-pills">
-                <h4 class="sidebar-heading px-3 py-3">
+                <h5 class="sidebar-heading px-3 py-3">
                         <span>Sales Management</span>
-                </h4>
+                </h5>
                 <li class="nav-item"><a class="nav-link text-white" href="AddSales.html"><i class="fas fa-file-medical mr-3"></i><span class="font-weight-bold">Add New Sales</span></a></li>
                 <li class="nav-item"><a class="nav-link text-white" href="DisplayRecord.html"><i class="fas fa-file-invoice mr-3"></i>Manage Sales Record</a></li>
             </ul>
             <ul class="nav flex-column nav-pills">
-                <h4 class="sidebar-heading mt-5 px-3 py-3">
+                <h5 class="sidebar-heading mt-5 px-3 py-3">
                     <span>Inventory Management</span>
-                </h4>
+                </h5>
                 <li class="nav-item"><a class="nav-link text-white" href="AddProduct.html"><i class="fas fa-folder-plus mr-3"></i>Add New Product</a></li>
                 <li class="nav-item"><a class="nav-link active bg-white text-dark" href="inventoryMain.html"><i class="fas fa-archive mr-3"></i>Manage Inventory</a></li>
             </ul>
             <ul class="nav flex-column nav-pills">
-                <h4 class="sidebar-heading mt-5 px-3 py-3">
+                <h5 class="sidebar-heading mt-5 px-3 py-3">
                         <span>Reports & Analytics</span>
-                </h4>
+                </h5>
                 <li class="nav-item"><a class="nav-link text-white" href="Generate_Report.html"><i class="fas fa-file-invoice mr-3"></i>Generate Report</a></li>
                 <li class="nav-item"><a class="nav-link text-white" href="Generate_Forecast.html"><i class="fas fa-file-contract mr-3"></i>Generate Analytics</a></li>
             </ul>
+            </div>
         </nav>
-
+        
         <!-- CONTENT -->
         <main class="col-lg-10 bg-white px-5 py-4 text-black">   
             <h1> Inventory </h1>
@@ -69,12 +71,15 @@
                         <button class="btn btn-outline-danger" id = "delectProduct" style="display:none">Delete</button>
                 </div>
             </div>
-
+        
+            <br>
+            
+            <div class="col-12 bg-white pt-3 text-black container-fluid">
             <div class="table-responsive">
-                <table id="table" class="table bordered table-responsive">
+                <table id="table" class="table table-bordered">
                     <!-- <caption>Product List</caption>  -->
                     <thead>
-                        <tr class="table-info">
+                        <tr class="bg-secondary text-white">
                             <!-- <th>ID</th> -->
                             <th></th>
                             <th>Name</th>

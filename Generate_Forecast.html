@@ -1,57 +1,81 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Sales Reporting|Genarating</title>
-        <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-firestore.js"></script>
 
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">   
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js" integrity="sha256-CutOzxCRucUsn6C6TcEYsauvvYilEniTXldPa6/wu0k=" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js" integrity="sha256-oSgtFCCmHWRPQ/JmR4OoZ3Xke1Pw4v50uh6pLcu+fIc=" crossorigin="anonymous"></script>
-    </head>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sales Reporting|Genarating</title>
+    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-firestore.js"></script>
 
-    <!-- BODY -->
-    <body id="entBody">
-        <!-- NAV BAR -->
-        <div class="row">
-            <div class="col-12">
-                <nav class="navbar navbar-right navbar-dark">
-                    <a class="navbar-brand" href="#"><span class="h2 ml-2 font-weight-bold">SRePS</span></a>
-                    <button class="btn btn-outline-light" id="LogButton" type="submit">Log Out</button>
-                </nav>
-            </div>
-        </div>
-        
-        <div class="container-fluid">
-        <div class="row">
-            <nav class="col-lg-2 px-0 bg-secondary" id="navigationSide">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+        crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js" integrity="sha256-CutOzxCRucUsn6C6TcEYsauvvYilEniTXldPa6/wu0k="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js" integrity="sha256-oSgtFCCmHWRPQ/JmR4OoZ3Xke1Pw4v50uh6pLcu+fIc="
+        crossorigin="anonymous"></script>
+</head>
 
+<!-- BODY -->
+
+<body id="entBody">
+    <!-- NAV BAR -->
+    <div class="row">
+        <div class="col-12">
+            <nav class="navbar navbar-right navbar-dark">
+                <a class="navbar-brand" href="#"><span class="h2 ml-2 font-weight-bold">SRePS</span></a>
+                <button class="btn btn-outline-light" id="LogButton" type="submit">Log Out</button>
             </nav>
-            
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-lg-2 px-0 bg-secondary">
+                <div class="sidenav" id="navigationSide">
+                    <ul class="nav flex-column nav-pills">
+                        <h5 class="sidebar-heading px-3 py-3"><span>Sales Management</span></h5>
+                        <li class="nav-item"><a class="nav-link text-white" href="AddSales.html"><i class="fas fa-file-medical mr-3"></i><span
+                                    class="font-weight-bold">Add New Sales</span></a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="DisplayRecord.html"><i class="fas fa-file-invoice mr-3"></i>Manage
+                                Sales Record</a></li>
+                    </ul>
+                    <ul class="nav flex-column nav-pills">
+                        <h5 class="sidebar-heading mt-5 px-3 py-3"><span>Inventory Management</span></h5>
+                        <li class="nav-item"><a class="nav-link text-white" href="AddProduct.html"><i class="fas fa-folder-plus mr-3"></i>Add
+                                New Product</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="inventoryMain.html"><i class="fas fa-archive mr-3"></i>Manage
+                                Inventory</a></li>
+                    </ul>
+                </div>
+            </nav>
+
             <!-- CONTENT -->
-            <main class="col-lg-10 bg-white px-5 py-4 text-black"> 
+            <main class="col-lg-10 bg-white px-5 py-4 text-black">
                 <h1 class="border-bottom">Genarate Analytics</h1>
-                <br/>
-                
+                <br />
+
                 <h4>Set Filter</h4>
-                
+
                 <div class="card">
                     <div class="card-header">
-                        <ul class="nav nav-tabs card-header-tabs pull-right"  id="myTab" role="tablist">
+                        <ul class="nav nav-tabs card-header-tabs pull-right" id="myTab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#yearTab" role="tab" aria-controls="home" aria-selected="true">Year</a>
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#yearTab" role="tab"
+                                    aria-controls="home" aria-selected="true">Year</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#dateTab" role="tab" aria-controls="profile" aria-selected="false">Date filter</a>
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#dateTab" role="tab"
+                                    aria-controls="profile" aria-selected="false">Date filter</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#productTab" role="tab" aria-controls="contact" aria-selected="false">Product filter</a>
+                                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#productTab" role="tab"
+                                    aria-controls="contact" aria-selected="false">Product filter</a>
                             </li>
                         </ul>
                     </div>
@@ -60,8 +84,9 @@
                             <!-- Year Tab -->
                             <div class="tab-pane fade show active" id="yearTab" role="tabpanel" aria-labelledby="home-tab">
                                 <h4>Generate 2018 products graph</h4>
-                                <button id="generateGraphYearButton" class="btn btn-outline-primary mr-3">Genarate Graphs</button>
-                                <button id= "yearExport" class="btn btn-outline-primary">Export </button>
+                                <button id="generateGraphYearButton" class="btn btn-outline-primary mr-3">Genarate
+                                    Graphs</button>
+                                <button id="yearExport" class="btn btn-outline-primary">Export </button>
                             </div>
 
                             <!-- Date Tab -->
@@ -70,91 +95,102 @@
                                 <form onsubmit="return false">
                                     <div class="form-row ml-0">
                                         <div class="custom-control custom-radio custom-control-inline ml-2">
-                                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodDaily"/>
+                                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod"
+                                                id="radioPeriodDaily" />
                                             <label class="custom-control-label" for="radioPeriodDaily">Daily</label>
                                         </div>
-                
+
                                         <div class="custom-control custom-radio custom-control-inline">
-                                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodWeekly"/>
+                                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod"
+                                                id="radioPeriodWeekly" />
                                             <label class="custom-control-label" for="radioPeriodWeekly">Weekly</label>
                                         </div>
-                
+
                                         <div class="custom-control custom-radio custom-control-inline">
-                                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodMonthly"/>
+                                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod"
+                                                id="radioPeriodMonthly" />
                                             <label class="custom-control-label" for="radioPeriodMonthly">Monthly</label>
                                         </div>
-                
+
                                         <div class="custom-control custom-radio custom-control-inline">
-                                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodYearly"/>
+                                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod"
+                                                id="radioPeriodYearly" />
                                             <label class="custom-control-label" for="radioPeriodYearly">Yearly</label>
                                         </div>
-                
+
                                         <div class="custom-control custom-radio custom-control-inline">
-                                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodCustom"/>
+                                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod"
+                                                id="radioPeriodCustom" />
                                             <label class="custom-control-label" for="radioPeriodCustom">Custom</label>
                                         </div>
                                     </div>
-                                    
-                
+
+
                                     <div class="form-row">
                                         <div class="col-6">
                                             <label for="startDate">Start Date:</label>
-                                            <input type="date" class="form-control date" id="startDate"/>
+                                            <input type="date" class="form-control date" id="startDate" />
                                         </div>
-                                        
+
                                         <div class="col-6">
                                             <label for="endDate">End Date:</label>
-                                            <input type="date" class="form-control date" id="endDate" disabled/>
+                                            <input type="date" class="form-control date" id="endDate" disabled />
                                         </div>
                                     </div>
-                                    <br/>
+                                    <br />
                                     <div class="form-row ml-0">
-                                        <button id="generateGraphsWithDateButton" class="btn btn-outline-primary mr-3" disabled>Genarate Graphs</button>
-                                        <button class="btn btn-outline-primary"disabled>Export Reports</button>
+                                        <button id="generateGraphsWithDateButton" class="btn btn-outline-primary mr-3"
+                                            disabled>Genarate Graphs</button>
+                                        <button class="btn btn-outline-primary" disabled>Export Reports</button>
                                     </div>
                                 </form>
                             </div>
-                            
+
                             <!-- Product Tab -->
                             <div class="tab-pane fade" id="productTab" role="tabpanel" aria-labelledby="contact-tab">
                                 <h4>Filter by product</h4>
                                 <select id="dropdownDetails" class="custom-select" required>
                                     <option value="">Select a product</option>
                                 </select>
-                                <br/><br/>
-                                <button id="generateGraphProductButton" class="btn btn-outline-primary mr-3">Genarate Graphs</button>
+                                <br /><br />
+                                <button id="generateGraphProductButton" class="btn btn-outline-primary mr-3">Genarate
+                                    Graphs</button>
 
                                 <div class="btn-group mr-3">
                                     <button id="addDatasetsProductButton" class="btn btn-outline-secondary">Add dataset</button>
-                                    <button id="removeDatasetsProductButton" class="btn btn-outline-danger">Remove dataset</button>
+                                    <button id="removeDatasetsProductButton" class="btn btn-outline-danger">Remove
+                                        dataset</button>
                                 </div>
 
-                                <button id="productExportButton" class="btn btn-outline-primary" >Export Graphs</button>
+                                <button id="productExportButton" class="btn btn-outline-primary">Export Graphs</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <br/>
-                <div class="card"> 
+                <br />
+                <div class="card">
                     <div class="card-body">
                         <canvas id="chart1"></canvas>
                     </div>
                 </div>
-                <br/>
-                <div class="card"> 
+                <br />
+                <div class="card">
                     <div class="card-body">
                         <canvas id="chart2"></canvas>
                     </div>
-                </div>   
+                </div>
             </main>
-            <br/>
+            <br />
         </div>
-        </div>
+    </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
     <script src="js/app.js"></script>
     <script src="js/admin.js"></script>
     <script src="js/FileSaver.min.js"></script>
@@ -163,4 +199,4 @@
 
 </body>
 
-</html> 
+</html>

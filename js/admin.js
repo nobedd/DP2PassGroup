@@ -1,7 +1,7 @@
 
 firebase.auth().onAuthStateChanged(function(user){
     if(user){
-        if (user.uid != "vAHtbuIEkXZHmJTLlBBao5lZnjf2"){
+        if (user.email != "adminexample@example.com"){
             document.getElementById("entBody").style.display = "none";
             console.log("User is not admin");
             alert("You do not have permission to access this page");

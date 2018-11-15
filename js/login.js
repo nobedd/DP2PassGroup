@@ -2,12 +2,10 @@ firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
       // User is signed in.
       console.log(user.email + " signed in");
-      if (user.uid =="PryfLkAhUWYNTXG1jWSpNJf94zo1"){
-        window.location.replace("AddSales.html");
-      }
-
-      if (user.uid=="vAHtbuIEkXZHmJTLlBBao5lZnjf2"){
+      if (user.email =="adminexample@example.com"){
         window.location.replace("Generate_Forecast.html");
+      } else {
+        window.location.replace("AddSales.html");
       }
       
       //   document.getElementById("user_div").style.display = "block";

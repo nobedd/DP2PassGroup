@@ -38,6 +38,7 @@ $(document).on("click", ".unselectProduct", function(){
     $("#deleteProduct").hide();
     $(".delectProduct").show();
     $(".checkSelectProduct").hide();
+    $(".checkSelectProduct").prop("checked", false);
 });
         //Check box function
         var checkedlist = [];

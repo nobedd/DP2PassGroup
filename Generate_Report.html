@@ -58,75 +58,98 @@
 
             <!-- CONTENT -->
             <main class="col-lg-10 bg-white px-5 py-4 text-black">   
-                <h1 class="border-bottom">Genarate Reports</h1><br/>
-
-                <form onsubmit="return false">
-                    <div class="form-row ml-0">
-                        <p>Choose period:</p>
-                        <div class="custom-control custom-radio custom-control-inline ml-2">
-                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodDaily"/>
-                            <label class="custom-control-label" for="radioPeriodDaily">Daily</label>
-                        </div>
-
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodWeekly"/>
-                            <label class="custom-control-label" for="radioPeriodWeekly">Weekly</label>
-                        </div>
-
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodMonthly"/>
-                            <label class="custom-control-label" for="radioPeriodMonthly">Monthly</label>
-                        </div>
-
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodYearly"/>
-                            <label class="custom-control-label" for="radioPeriodYearly">Yearly</label>
-                        </div>
-
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodCustom"/>
-                            <label class="custom-control-label" for="radioPeriodCustom">Custom</label>
+                <div class="d-flex border-bottom">
+                    <h1 class="flex-grow-1">Genarate Reports</h1>
+                    <div class="p-2">
+                        <button id="generateTableButton" class="btn btn-outline-primary">Genarate Table</button>
+                        <button id="exportTableButton" class="btn btn-outline-success ml-3">Export Table</button>
+                    </div>
+                    
+                </div>
+                <br/>
+                <div class="card-deck">
+                    <div class="card">
+                        <div class="card-header">Filter</div>
+                        <div class="card-body">
+                            <form onsubmit="return false">
+                                <div class="form-row">
+                                    <div class="custom-control custom-radio custom-control-inline ml-2">
+                                        <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodDaily"/>
+                                        <label class="custom-control-label" for="radioPeriodDaily">Daily</label>
+                                    </div>
+            
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodWeekly"/>
+                                        <label class="custom-control-label" for="radioPeriodWeekly">Weekly</label>
+                                    </div>
+            
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodMonthly"/>
+                                        <label class="custom-control-label" for="radioPeriodMonthly">Monthly</label>
+                                    </div>
+            
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodYearly"/>
+                                        <label class="custom-control-label" for="radioPeriodYearly">Yearly</label>
+                                    </div>
+            
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" class="custom-control-input radioPeriod" name="radioPeriod" id="radioPeriodCustom"/>
+                                        <label class="custom-control-label" for="radioPeriodCustom">Custom</label>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="form-row">
+                                    <div class="col-6">
+                                        <label for="startDate">Start Date:</label>
+                                        <input type="date" class="date form-control col-md-7 ml-0" id="startDate"/>
+                                    </div>
+                                    
+                                    <div class="col-6">
+                                        <label for="endDate">End Date:</label>
+                                        <input type="date" class="date form-control col-md-7 ml-0" id="endDate" disabled/>
+                                    </div>
+                                </div>
+                            </form>
+                            <br/>
+                            
                         </div>
                     </div>
 
-                    <div class="form-row">
-                        <div class="col-6">
-                            <label for="startDate">Start Date:</label>
-                            <input type="date" class="date form-control col-md-7 ml-0" id="startDate"/>
-                        </div>
-                        
-                        <div class="col-6">
-                            <label for="endDate">End Date:</label>
-                            <input type="date" class="date form-control col-md-7 ml-0" id="endDate" disabled/>
+                    <div class="card">
+                        <div class="card-header">Report Summary</div>
+                        <div class="card-body">
+                            <table class="table table-bordered" style="font-size: 12px;" id="summaryTable">
+                                <thead>
+                                    <th>Date</th>
+                                    <th>Quantity</th>
+                                    <th>Revenue</th>
+                                    <th>Gross Margin</th>
+                                    <th>Gross %</th>
+                                </thead>
+                                <tbody>
+                                    <td id="dateRange"></td>
+                                    <td id="totalQuantity"></td>
+                                    <td id="totalRevenue"></td>
+                                    <td id="totalGrossMargin"></td>
+                                    <td id="totalGrossPercentage"></td>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                </form>
-                <br>
-                <!-- remove this button and enable the commented button above after the form above is done -->
-                <button id="generateTableButton" class="btn btn-outline-primary">Genarate Table</button>
-                <button id="exportTableButton" class="btn btn-outline-success ml-3">Export Table</button>
-                <br>
-                <br>
+                </div><br/>
 
                 <table class="table table-bordered" id="table">
                     <thead>
                         <th>Product name</th>
                         <th>Category</th>
                         <th>Unit Price</th>
-                        <th>Quantity Sold</th>
+                        <th>Quantity</th>
                         <th>Revenue</th>
                         <th>Gross Margin</th>
 
                     </thead>
                     <tbody id="tbodyID"></tbody>
-                    <tfoot>
-                        <td>Report Summary</td>
-                        <td></td>
-                        <td></td>
-                        <td id="totalQuantity"></td>
-                        <td id="totalRevenue"></td>
-                        <td id="totalGrossMargin"></td>
-                    </tfoot>
                 </table>
             </main>
         </div>

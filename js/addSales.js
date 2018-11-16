@@ -72,14 +72,14 @@ $(document).ready(function(){
         var unitPrice = parseFloat(mapPrice[selectedOptionsDropdown]);
         var totalUnitPrice = unitPrice * quantity;
         
-        $(this).siblings(".unitPrice").text(unitPrice);
-        $(this).siblings(".totalUnitPrice").text(totalUnitPrice);
+        $(this).siblings(".unitPrice").text(unitPrice.toFixed(2));
+        $(this).siblings(".totalUnitPrice").text(totalUnitPrice.toFixed(2));
 
         totalPrice = 0;
         $(".totalUnitPrice").each(function(){
             totalPrice += parseFloat($(this).text());
         })
-        $("#totalPrice").text(totalPrice);  
+        $("#totalPrice").text(totalPrice.toFixed(2));  
     });
 
     //onSubmit function
@@ -100,8 +100,8 @@ $(document).ready(function(){
                     name: CurrentDropdownSelect, 
                     category: mapCategory[CurrentDropdownSelect],
                     quantity: parseInt($("#inputDetailsQuantity" + rowID).val()), 
-                    unitPrice: parseFloat($("#unitPrice" + rowID).text()), 
-                    totalUnitPrice: parseFloat($("#totalUnitPrice" + rowID).text())
+                    unitPrice: (parseFloat($("#unitPrice" + rowID).text())).toFixed(2), 
+                    totalUnitPrice: (parseFloat($("#totalUnitPrice" + rowID).text())).toFixed(2)
                 });
             }       
         }

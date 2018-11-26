@@ -1,8 +1,5 @@
 var db = firebase.firestore();
 
-function paginateTable() {
-    $("#table").DataTable();
-}
 //This function generates the list of products and put into a table form
 db.collection("Products")
 .get()
@@ -13,7 +10,7 @@ db.collection("Products")
     querySnapshot.forEach (function(doc){
         productIDarray[IDcounterForEachProduct]=doc.id;//mapping the index number to ID
         content += '<tr id="' + IDcounterForEachProduct + '">';
-        content += '<td>' + "<input type='checkbox' class='checkSelectProduct' style='display:none'/>" + '</td>';
+        content += '<td>' + "<input type='checkbox' class='checkSelectProduct'/>" + '</td>';
         content += '<td>' + doc.data().PName + '</td>';
         content += '<td>' + doc.data().Category + '</td>';
         content += '<td>' + doc.data().Raw_Price + '</td>';
@@ -21,46 +18,66 @@ db.collection("Products")
         content += '<td>' + "<Button class='editProduct btn btn-outline-dark' data-toggle='modal' data-target='#saveChange'>Edit</Button><Button class='deleteProduct btn btn-outline-danger' >Delete</Button>" + '</td>';
         content += '</tr>';
         IDcounterForEachProduct++;
+
 });
 
-$(document).on("click", ".selectProduct", function(){
-    $("#selectProduct").hide();
-    $("#unselectProduct").show();
-    $(".delectProduct").hide();
-    $("#deleteProduct").show();
-    $(".checkSelectProduct").show();
-});
-
-
-$(document).on("click", ".unselectProduct", function(){
-    $("#selectProduct").show();
-    $("#unselectProduct").hide();
-    $("#deleteProduct").hide();
-    $(".delectProduct").show();
-    $(".checkSelectProduct").hide();
-    $(".checkSelectProduct").prop("checked", false);
-});
         //Check box function
         var checkedlist = [];
         var indexArray = [];
+
+        //Select checkbox individually
         $(document).on("click", ".checkSelectProduct", function(){
             var checked = $(this).is(":checked");
-            var getrowIndex = $(this).closest('tr').attr('id');
+            getIndex = $(this).closest('tr').attr('id');
             
             if(checked){
-                console.log(getrowIndex);
-                indexArray.push(getrowIndex);
-                checkedlist.push(productIDarray[getrowIndex]);
+                console.log(getIndex);
+                indexArray.push(getIndex);
+                checkedlist.push(productIDarray[getIndex]);
                 
             }else{
-                indexArray = indexArray.filter(x => x!= getrowIndex);
-                checkedlist = checkedlist.filter(x => x != productIDarray[getrowIndex]);
+                indexArray = indexArray.filter(x => x!= getIndex);
+                checkedlist = checkedlist.filter(x => x != productIDarray[getIndex]);
             
             }
             console.log(checkedlist);
             
         });
 
+        // Select and deselect all checkboxes
+        var getIndex;
+        
+        $("#selectAllCB").change(function(){
+
+            $(".checkSelectProduct").prop("checked", $(this).prop("checked"));
+
+            if($(this).prop("checked")){
+                $(".checkSelectProduct").each(function(){
+                    getIndex = $(this).closest('tr').attr('id');
+                    console.log(getIndex);
+                    indexArray.push(getIndex);
+                    checkedlist.push(productIDarray[getIndex]);
+                });
+            }else{
+                indexArray = [];
+                checkedlist = [];
+            }
+
+            console.log(indexArray);
+            console.log(checkedlist);
+        });
+        
+        $(".checkSelectProduct").change(function(){
+            if(false == $(this).prop("checked")){
+                $("#selectAllCB").prop("checked", false); 
+            }
+            
+            if($(this).length==$(this).length){
+                $("#selectAllCB").prop("checked", true);
+            }
+        });
+
+        //Delete selected product
         $(document).on("click", "#deleteProduct", function(){
             if (confirm("Proceed with Delete: click 'OK'\n")) {
                 console.log("deleted button clicked");//works
@@ -76,19 +93,32 @@ $(document).on("click", ".unselectProduct", function(){
                         //now i have to delete the document with getPID from the database
                         db.collection("Products").doc(getPID).delete().then(function() {
                             console.log("Document successfully deleted!");
-                            
+                            location.reload();
                         }).catch(function(error) {
                             console.error("Error removing document: ", error);
                         });
+                        
+                        
                     //then triger a function that will delete the entire <tbody> and then reload it
                     } else {
                     // Do nothing!
                     } 
-                }
+                }  
             }
+
+            
         });
 
-        setTimeout(paginateTable, 100); 
+        $(document).ready(function(){
+            $("#table").DataTable(
+                {
+                    'columnDefs':[
+                        {'orderable': false, 'targets' : 0 },
+                        {'orderable': true, 'targets' : 1 }
+                    ]
+                }
+            );
+        }); 
 
         $(document).on("click", ".deleteProduct", function () {
             if (confirm("Proceed with Delete: click 'OK'\n")) {

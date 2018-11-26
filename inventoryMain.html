@@ -60,34 +60,34 @@
         <main class="col-lg-10 bg-white px-5 py-4 text-black">   
             <h1 class="border-bottom">Manage Inventory</h1>
             <br/>
+            
             <div class="row">
-                
-                <div class = "col-md-3" >
-                        <button class="selectProduct btn btn-outline-dark" id = "selectProduct">Select</button>
-                        <button class="unselectProduct btn btn-outline-dark" id = "unselectProduct" style="display:none">CancelSelect</button>
-                        <button class="btn btn-outline-danger" id = "deleteProduct" style="display:none">Delete</button>
+                <div class ="col">
+                    <button class="btn btn-outline-danger float-right"  id = "deleteProduct" >Delete Selected Product</button>
                 </div>
             </div>
-        
-            <br>
-            
-            <div class="col-12 bg-white pt-3 text-black container-fluid">
-            <div class="table-responsive">
-                <table id="table" class="table table-bordered">
-                    <!-- <caption>Product List</caption>  -->
-                    <thead>
-                        <tr class="bg-secondary text-white">
-                            <!-- <th>ID</th> -->
-                            <th></th>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th>Raw Price</th>
-                            <th>Sales Price</th>
-                            <th scope="col">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+
+            <br/>
+            <div class="row">
+                <div class="col-12 bg-white pt-3 text-black container-fluid float-none">
+                    <div class="table-responsive">
+                        <table id="table" class="table table-bordered">
+                            <!-- <caption>Product List</caption>  -->
+                            <thead>
+                                <tr class="bg-secondary text-white">
+                                    <!-- <th>ID</th> -->
+                                    <th><input type="checkbox" id="selectAllCB" /></th>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Raw Price</th>
+                                    <th>Sales Price</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </main>
 

@@ -113,8 +113,7 @@ db.collection("Products")
             $("#table").DataTable(
                 {
                     'columnDefs':[
-                        {'orderable': false, 'targets' : 0 },
-                        {'orderable': true, 'targets' : 1 }
+                        {'orderable': false, 'targets' : 0 }
                     ]
                 }
             );

@@ -1,4 +1,4 @@
-# DP2PassGroup - SREPS
+# SREPS - School Project
 A Sales Reporting and Prediction System created with Firebase Cloud Firestore.
 
 You can find the instructions on how to use this web app below.
